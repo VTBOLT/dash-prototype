@@ -1,0 +1,15 @@
+{
+  "name": "dash-prototype",
+  "version": "1.0.0",
+  "description": "Prototype for BOLT 4 Dashboard",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "author": "Khang L.",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^3.0.3"
+  }
+}
