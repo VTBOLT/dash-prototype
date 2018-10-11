@@ -1,26 +1,29 @@
 var spawn = require("child_process").spawn;
-process = spawn("python3", ["-u", "dataReader.py"], {
+processRPM = spawn("python3", ["-u", "dataReader.py"], {
   shell: true
 });
-process.unref();
-var countdown = document.getElementById("rpm");
-process.stdout.setEncoding("utf8");
-process.stdout.on("data", data => {
+processSOC = spawn("./a.out", [], {
+  shell: true
+});
+processRPM.unref();
+var rpm = document.getElementById("rpm");
+var soc = document.getElementById("soc");
+
+var b1 = document.querySelector(".ldBar");
+var b = new ldBar(b1);
+
+processRPM.stdout.setEncoding("utf8");
+processRPM.stdout.on("data", data => {
   var str = data.toString();
   var buf = str.split(":");
   if (buf[0] == "rpm") {
-    countdown.textContent = "RPM: " + buf[1];
+    rpm.textContent = "RPM: " + buf[1];
   }
 });
-// var countItDown = function() {
-//   //   var currentTime = parseFloat(countdown.textContent);
-//   //   if (currentTime < 97) {
-//   //     countdown.textContent = currentTime + 1;
-//   //   } else {
-//   //     countdown.textContent = 56;
-//   //   }
-
-//   });
-// };
-// call interval
-// countItDown();
+processSOC.stdout.on("data", data => {
+  var str = data.toString();
+  var buf = str.split(":");
+  if (buf[0] == "soc") {
+    b.set(parseInt(buf[1]));
+  }
+});

@@ -4,7 +4,7 @@
 int main(){
     int x = 0;
     while(x < 100){
-        std::cout << x << std::endl;
+        std::cout << "soc:" << x << std::endl;
         sleep(1);
         x++;
         if(x == 99){
