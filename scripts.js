@@ -1,8 +1,8 @@
 var spawn = require("child_process").spawn;
-processRPM = spawn("python3", ["-u", "dataReader.py"], {
-  shell: true
-});
-processSOC = spawn("./a.out", [], {
+// processRPM = spawn("python3", ["-u", "dataReader.py"], {
+//   shell: true
+// });
+processSOC = spawn("./CanInterface", [], {
   shell: true
 });
 processRPM.unref();
@@ -25,5 +25,7 @@ processSOC.stdout.on("data", data => {
   var buf = str.split(":");
   if (buf[0] == "soc") {
     b.set(parseInt(buf[1]));
+  } else if (buf[0] == "rpm") {
+    rpm.textContent = "RPM: " + buf[1];
   }
 });
