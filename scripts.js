@@ -10,7 +10,7 @@ which outputs CAN data
 /* Spawns an instance of dataReader.py, which writes to stdout 
 test rpm and soc data 
 --------Used for testing-------*/
-processInputs = spawn("python", ["-u", "dataReader.py"], {
+processInputs = spawn("python", ["dataReader.py"], {
   shell: true
 });
 
