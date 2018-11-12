@@ -13,9 +13,9 @@ which outputs CAN data
 /* Spawns an instance of dataReader.py, which writes to stdout 
 test rpm and soc data 
 --------Used for testing-------*/
-processInputs = spawn("python", ["dataReader.py"], {
-  shell: true
-});
+//processInputs = spawn("python", ["dataReader.py"], {
+//  shell: true
+//});
 
 //Creates JS object of HTML element.
 var rpm = document.getElementById("rpm");
@@ -54,36 +54,38 @@ channel.addListener("onMessage", function(msg) {
 
             break;
         case 0xA5:
-            RPM = (( frame_rd.data[3] << 8 ) + ( frame_rd.data[2] ));
+            RPM = (( msg['data'][3] << 8 ) + ( msg['data'][2] ));
 
             break;
         case 0x181:
-			highCellTemp = (( frame_rd.data[2] << 8 ) + ( frame_rd.data[1] )) * 0.1;
-	    	lowCellTemp = (( frame_rd.data[5] << 8 ) + (frame_rd.data[4] )) * 0.1;
+			highCellTemp = (( msg['data'][2] << 8 ) + ( msg['data'][1] )) * 0.1;
+	    	lowCellTemp = (( msg['data'][5] << 8 ) + (msg['data'][4] )) * 0.1;
 			break;
 		case 0x111:
-		    DCL = (( frame_rd.data[1] << 8 ) + ( frame_rd.data[0] ));
+		    DCL = (( msg['data'][1] << 8 ) + ( msg['data'][0] ));
 			break;
 		case 0x183:
-		    SOC = (( frame_rd.data[5] << 8 ) + ( frame_rd.data[4] )) * 0.5;
+		    SOC = (( msg['data'][5] << 8 ) + ( msg['data'][4] )) * 0.5;
             b.set(SOC)
 			break;
 		case 0xAA:
-			OBVSM_state = (( frame_rd.data[1] << 8 ) + ( frame_rd.data[0] ));
-	    	inverter_state = (( frame_rd.data[2] ));
-	    	relay_state = (( frame_rd.data[3] ));
-	    	inverter_run_state = (( frame_rd.data[4] ));
-	    	inverter_cmd_state = (( frame_rd.data[5] ));
-	    	inverter_enable_state = (( frame_rd.data[6] ));
-	    	direction_state = (( frame_rd.data[7] ));
+			OBVSM_state = (( msg['data'][1] << 8 ) + ( msg['data'][0] ));
+	    	inverter_state = (( msg['data'][2] ));
+	    	relay_state = (( msg['data'][3] ));
+	    	inverter_run_state = (( msg['data'][4] ));
+	    	inverter_cmd_state = (( msg['data'][5] ));
+	    	inverter_enable_state = (( msg['data'][6] ));
+	    	direction_state = (( msg['data'][7] ));
 			break;
 		case 0xAB:
-			post_lo_fault = (( frame_rd.data[1] << 8 ) + ( frame_rd.data[0] ));
-	    	post_hi_fault = (( frame_rd.data[3] << 8 ) + ( frame_rd.data[2] ));
-	    	run_lo_fault = (( frame_rd.data[5] << 8 ) + ( frame_rd.data[4] ));
-	    	run_hi_fault = (( frame_rd.data[7] << 8 ) + ( frame_rd.data[6] ));
+			post_lo_fault = (( msg['data'][1] << 8 ) + ( msg['data'][0] ));
+	    	post_hi_fault = (( msg['data'][3] << 8 ) + ( msg['data'][2] ));
+	    	run_lo_fault = (( msg['data'][5] << 8 ) + ( msg['data'][4] ));
+	    	run_hi_fault = (( msg['data'][7] << 8 ) + ( msg['data'][6] ));
 			break;
 		default:
 			break;
     }
 });
+
+channel.start()
