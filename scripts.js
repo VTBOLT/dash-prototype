@@ -29,7 +29,7 @@ var b1 = document.querySelector(".ldBar");
 var b = new ldBar(b1);
 
 let curr_soc = 0;
-let curr_rpm = 0;
+let curr_rpm = 1000;
 
 setTimeout(rpmTest, 100);
 
@@ -37,7 +37,7 @@ function rpmTest() {
   rpm.textContent = "RPM: " + curr_rpm;
   curr_rpm += 100;
   if (curr_rpm > 8500) {
-    curr_rpm = 0;
+    curr_rpm = 1000;
   }
   setTimeout(rpmTest, 100);
 }
