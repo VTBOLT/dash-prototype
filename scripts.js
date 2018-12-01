@@ -1,7 +1,11 @@
-var can = require("socketcan");
+// Had to comment these out, hangs vvvvvvv
 
-var channel = can.createRawChannel("vcan0", true);
+//var can = require("socketcan");
+
+//var channel = can.createRawChannel("vcan0", true);
 //var spawn = require("child_process").spawn;
+
+// Had to comment these out, hangs ^^^^^^^
 
 /* The command below spawns an instance of CanInterface
 which outputs CAN data 
@@ -26,6 +30,19 @@ var b = new ldBar(b1);
 
 let curr_soc = 0;
 let curr_rpm = 0;
+
+setTimeout(rpmTest, 100);
+
+function rpmTest() {
+  rpm.textContent = "RPM: " + curr_rpm;
+  curr_rpm += 100;
+  if (curr_rpm > 8500) {
+    curr_rpm = 0;
+  }
+  setTimeout(rpmTest, 100);
+}
+
+
 //Reads in stdout, processes data to display on screen.
 //processInputs.stdout.on("data", data => {
 //  var str = data.toString();
