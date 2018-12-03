@@ -3,7 +3,7 @@
 //var can = require("socketcan");
 
 //var channel = can.createRawChannel("vcan0", true);
-//var spawn = require("child_process").spawn;
+var spawn = require("child_process").spawn;
 
 // Had to comment these out, hangs ^^^^^^^
 
@@ -17,47 +17,60 @@ which outputs CAN data
 /* Spawns an instance of dataReader.py, which writes to stdout 
 test rpm and soc data 
 --------Used for testing-------*/
-//processInputs = spawn("python", ["dataReader.py"], {
-//  shell: true
-//});
+processInputs = spawn("python", ["dataReader.py"], {
+ shell: true
+});
 
 //Creates JS object of HTML element.
 var rpm = document.getElementById("rpm");
+var maxMCTemp = document.getElementById("maxMCTemp");
+var motorTemp = document.getElementById("motorTemp");
+var maxMotorTemp = document.getElementById("maxMotorTemp");
+var maxCellTemp = document.getElementById("maxCellTemp");
+var minCellTemp = document.getElementById("minCellTemp");
 
 //Loading bar object imported from loading-bar.*
 var b1 = document.querySelector(".ldBar");
 var b = new ldBar(b1);
 
+// DONT THINK THESE ARE NEEDED
 let curr_soc = 0;
 let curr_rpm = 1000;
-
-setTimeout(rpmTest, 100);
-
-function rpmTest() {
-  rpm.textContent = "RPM: " + curr_rpm;
-  curr_rpm += 100;
-  if (curr_rpm > 8500) {
-    curr_rpm = 1000;
-  }
-  setTimeout(rpmTest, 100);
-}
-
+let curr_mctemp = 98.0;
+let curr_motortemp = 30;
 
 //Reads in stdout, processes data to display on screen.
-//processInputs.stdout.on("data", data => {
-//  var str = data.toString();
-//  let buf = str.split(":");
-//  if (buf[0] == "soc") {
-//    b.set(parseInt(buf[1]));
-//  } else if (buf[0] == "rpm") {
-//    let newbuf = buf[1].split("\n");
-//    if (newbuf[0].trim().length != 0) {
-//      curr_rpm = newbuf[0];
-//    }
-//    console.log(curr_rpm);
-//    rpm.textContent = "RPM: " + curr_rpm;
-//  }
-//});
+processInputs.stdout.on("data", data => {
+ var str = data.toString();
+ let buf = str.split(":");
+ if (buf[0] == "soc") {                     // SOC
+   b.set(parseInt(buf[1]));
+   // Don't know how to do the SOC loading bar
+
+ } else if (buf[0] == "rpm") {              // RPM
+   let newbuf = buf[1].split("\n");
+   if (newbuf[0].trim().length != 0) {
+     curr_rpm = newbuf[0];
+   }
+   console.log("RPM:" + curr_rpm);
+   rpm.textContent = "RPM: " + curr_rpm;
+ } else if (buf[0] == "mctemp") {           // MC Temp
+  let newbuf = buf[1].split("\n");
+  if (newbuf[0].trim().length != 0) {
+    curr_mctemp = newbuf[0];
+  }
+  console.log("MC Temp:" + curr_mctemp);
+  maxMCTemp.textContent = "Highest MC Temp: " + curr_mctemp;   
+ } else if (buf[0] == "motortemp") {        // Motor Temp
+  let newbuf = buf[1].split("\n");
+  if (newbuf[0].trim().length != 0) {
+    curr_motortemp = newbuf[0];
+  }
+  console.log("Motor Temp:" + curr_motortemp);
+  motorTemp.textContent = "Motor Temp: " + curr_motortemp; 
+ }
+});
+
 channel.addListener("onMessage", function(msg) {
   switch (msg["id"]) {
     case 0xa0:
