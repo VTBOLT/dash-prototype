@@ -3,7 +3,7 @@
 //var can = require("socketcan");
 
 //var channel = can.createRawChannel("vcan0", true);
-var spawn = require("child_process").spawn;
+//var spawn = require("child_process").spawn;
 
 // Had to comment these out, hangs ^^^^^^^
 
@@ -17,9 +17,9 @@ which outputs CAN data
 /* Spawns an instance of dataReader.py, which writes to stdout 
 test rpm and soc data 
 --------Used for testing-------*/
-processInputs = spawn("python", ["dataReader.py"], {
- shell: true
-});
+//processInputs = spawn("python", ["dataReader.py"], {
+// shell: true
+//});
 
 //Creates JS object of HTML element.
 var rpm = document.getElementById("rpm");
@@ -28,48 +28,110 @@ var motorTemp = document.getElementById("motorTemp");
 var maxMotorTemp = document.getElementById("maxMotorTemp");
 var maxCellTemp = document.getElementById("maxCellTemp");
 var minCellTemp = document.getElementById("minCellTemp");
+var socText = document.getElementById("soc");
 
 //Loading bar object imported from loading-bar.*
 var b1 = document.querySelector(".ldBar");
 var b = new ldBar(b1);
 
-// DONT THINK THESE ARE NEEDED
-let curr_soc = 0;
+// Set initial values for data
+let curr_soc = 92.0;
 let curr_rpm = 1000;
-let curr_mctemp = 98.0;
-let curr_motortemp = 30;
+let curr_maxmctemp = 98.0;
+let curr_motortemp = 30.0;
+let curr_maxmotortemp = 30.0;
+let curr_maxcelltemp = 120.0
+let curr_mincelltemp = 102.0
+
+// clean sleep function for js
+// https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// Continuous loop writing new values to the screen
+async function write_data() {
+  let counter = 51; // analagous to "temp" on BOLT_3_Dash
+  b.set(curr_soc); // start up soc bar
+  while (true) {
+    await sleep(100);
+    
+    // update other things less often
+    if (counter > 50) {
+      curr_soc -= 0.1;
+      curr_maxmctemp += 0.01;
+      curr_motortemp += 1.0;
+      curr_maxcelltemp += 0.01;
+      curr_mincelltemp += 0.01;
+      //test for new max motor temp
+      if (curr_motortemp > curr_maxmotortemp) {
+        curr_maxmotortemp = curr_motortemp;
+        maxMotorTemp.textContent = "Highest Motor Temp: " + curr_maxmotortemp.toString();
+      }
+      counter = 0;
+      maxMCTemp.textContent = "Highest MC Temp: " + curr_maxmctemp.toString().substring(0, 5);
+      motorTemp.textContent = "Motor Temp: " + curr_motortemp.toString();
+      maxCellTemp.textContent = "Highest Cell Temp: " + curr_maxcelltemp.toString().substring(0, 6);
+      minCellTemp.textContent = "Lowest Cell Temp: " + curr_mincelltemp.toString().substring(0, 6);
+      b.set(curr_soc);
+      socText.textContent = "SOC: " + curr_soc.toString().substring(0, 4);
+    }
+    
+    // soc overflow
+    if (curr_soc <= 0) {
+      curr_soc = 99.0;
+    }
+
+    // rpm overflow
+    if (curr_rpm > 8500) {
+      curr_rpm = 0;
+    }
+    
+    // motor temp overflow
+    if (curr_motortemp > 40) {
+      curr_motortemp = 10;
+    }
+
+    // update rpm every pass
+    rpm.textContent = "RPM: " + curr_rpm.toString();
+    curr_rpm += 100;
+    counter++;
+  }
+}
+
+write_data();
 
 //Reads in stdout, processes data to display on screen.
-processInputs.stdout.on("data", data => {
- var str = data.toString();
- let buf = str.split(":");
- if (buf[0] == "soc") {                     // SOC
-   b.set(parseInt(buf[1]));
-   // Don't know how to do the SOC loading bar
+// processInputs.stdout.on("data", data => {
+//  var str = data.toString();
+//  let buf = str.split(":");
+//  if (buf[0] == "soc") {                     // SOC
+//    b.set(parseInt(buf[1]));
+//    // Don't know how to do the SOC loading bar
 
- } else if (buf[0] == "rpm") {              // RPM
-   let newbuf = buf[1].split("\n");
-   if (newbuf[0].trim().length != 0) {
-     curr_rpm = newbuf[0];
-   }
-   console.log("RPM:" + curr_rpm);
-   rpm.textContent = "RPM: " + curr_rpm;
- } else if (buf[0] == "mctemp") {           // MC Temp
-  let newbuf = buf[1].split("\n");
-  if (newbuf[0].trim().length != 0) {
-    curr_mctemp = newbuf[0];
-  }
-  console.log("MC Temp:" + curr_mctemp);
-  maxMCTemp.textContent = "Highest MC Temp: " + curr_mctemp;   
- } else if (buf[0] == "motortemp") {        // Motor Temp
-  let newbuf = buf[1].split("\n");
-  if (newbuf[0].trim().length != 0) {
-    curr_motortemp = newbuf[0];
-  }
-  console.log("Motor Temp:" + curr_motortemp);
-  motorTemp.textContent = "Motor Temp: " + curr_motortemp; 
- }
-});
+//  } else if (buf[0] == "rpm") {              // RPM
+//    let newbuf = buf[1].split("\n");
+//    if (newbuf[0].trim().length != 0) {
+//      curr_rpm = newbuf[0];
+//    }
+//    console.log("RPM:" + curr_rpm);
+//    rpm.textContent = "RPM: " + curr_rpm;
+//  } else if (buf[0] == "mctemp") {           // MC Temp
+//   let newbuf = buf[1].split("\n");
+//   if (newbuf[0].trim().length != 0) {
+//     curr_mctemp = newbuf[0];
+//   }
+//   console.log("MC Temp:" + curr_mctemp);
+//   maxMCTemp.textContent = "Highest MC Temp: " + curr_mctemp;   
+//  } else if (buf[0] == "motortemp") {        // Motor Temp
+//   let newbuf = buf[1].split("\n");
+//   if (newbuf[0].trim().length != 0) {
+//     curr_motortemp = newbuf[0];
+//   }
+//   console.log("Motor Temp:" + curr_motortemp);
+//   motorTemp.textContent = "Motor Temp: " + curr_motortemp; 
+//  }
+// });
 
 channel.addListener("onMessage", function(msg) {
   switch (msg["id"]) {
