@@ -1,6 +1,3 @@
-// need npm argparse packages
-// npm i argparse
-
 // Had to comment these out, hangs vvvvvvv
 //var can = require("socketcan");
 //var channel = can.createRawChannel("vcan0", true);
@@ -102,7 +99,12 @@ async function write_data() {
   }
 }
 
-write_data();
+// Only use test data if "dev" Node env var is present
+// Examples: dev=1 npm start, dev=0 npm start, dev=lsjdkl npm start
+if (process.env.dev) {
+  write_data();
+}
+
 
 //Reads in stdout, processes data to display on screen.
 // processInputs.stdout.on("data", data => {
