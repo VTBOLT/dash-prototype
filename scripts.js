@@ -1,11 +1,13 @@
+// need npm argparse packages
+// npm i argparse
+
 // Had to comment these out, hangs vvvvvvv
-
 //var can = require("socketcan");
-
 //var channel = can.createRawChannel("vcan0", true);
+// Had to comment these out, hangs ^^^^^^^
+
 //var spawn = require("child_process").spawn;
 
-// Had to comment these out, hangs ^^^^^^^
 
 /* The command below spawns an instance of CanInterface
 which outputs CAN data 
@@ -21,18 +23,19 @@ test rpm and soc data
 // shell: true
 //});
 
+
 //Creates JS object of HTML element.
-var rpm = document.getElementById("rpm");
-var maxMCTemp = document.getElementById("maxMCTemp");
-var motorTemp = document.getElementById("motorTemp");
-var maxMotorTemp = document.getElementById("maxMotorTemp");
-var maxCellTemp = document.getElementById("maxCellTemp");
-var minCellTemp = document.getElementById("minCellTemp");
-var socText = document.getElementById("soc");
+let rpm = document.getElementById("rpm");
+let maxMCTemp = document.getElementById("maxMCTemp");
+let motorTemp = document.getElementById("motorTemp");
+let maxMotorTemp = document.getElementById("maxMotorTemp");
+let maxCellTemp = document.getElementById("maxCellTemp");
+let minCellTemp = document.getElementById("minCellTemp");
+let socText = document.getElementById("soc");
 
 //Loading bar object imported from loading-bar.*
-var b1 = document.querySelector(".ldBar");
-var b = new ldBar(b1);
+let b1 = document.querySelector(".ldBar");
+let b = new ldBar(b1);
 
 // Set initial values for data
 let curr_soc = 92.0;
@@ -66,13 +69,13 @@ async function write_data() {
       //test for new max motor temp
       if (curr_motortemp > curr_maxmotortemp) {
         curr_maxmotortemp = curr_motortemp;
-        maxMotorTemp.textContent = "Highest Motor Temp: " + curr_maxmotortemp.toString();
+        maxMotorTemp.textContent = curr_maxmotortemp.toString();
       }
       counter = 0;
-      maxMCTemp.textContent = "Highest MC Temp: " + curr_maxmctemp.toString().substring(0, 5);
-      motorTemp.textContent = "Motor Temp: " + curr_motortemp.toString();
-      maxCellTemp.textContent = "Highest Cell Temp: " + curr_maxcelltemp.toString().substring(0, 6);
-      minCellTemp.textContent = "Lowest Cell Temp: " + curr_mincelltemp.toString().substring(0, 6);
+      maxMCTemp.textContent = curr_maxmctemp.toString().substring(0, 5);
+      motorTemp.textContent = curr_motortemp.toString();
+      maxCellTemp.textContent = curr_maxcelltemp.toString().substring(0, 6);
+      minCellTemp.textContent = curr_mincelltemp.toString().substring(0, 6);
       b.set(curr_soc);
       socText.textContent = "SOC: " + curr_soc.toString().substring(0, 4);
     }
