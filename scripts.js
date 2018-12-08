@@ -29,12 +29,9 @@ let maxMotorTemp = document.getElementById("maxMotorTemp");
 let maxCellTemp = document.getElementById("maxCellTemp");
 let minCellTemp = document.getElementById("minCellTemp");
 let socText = document.getElementById("soc");
-let temps = document.getElementById("temps");
-let firstElem = document.getElementById("firstElem");
-
-//Loading bar object imported from loading-bar.*
-let b1 = document.querySelector(".ldBar");
-let b = new ldBar(b1);
+let tempTable = document.getElementById("tempTable");
+let unhideTemps = document.getElementById("unhidetemps");
+unhideTemps.style.display = "none";
 
 // Set initial values for data
 let curr_soc = 92.0;
@@ -46,19 +43,42 @@ let curr_maxcelltemp = 120.0
 let curr_mincelltemp = 102.0
 let counter = 51; // analagous to "temp" on BOLT_3_Dash
 
+//Loading bar object imported from loading-bar.*
+let b1 = document.querySelector(".ldBar");
+let b = new ldBar(b1);
+b.set(curr_soc); // start up soc bar
+
 // Long-press show/hide functionality for temps div
 //DOES NOT WORK YET
-temps.addEventListener("mousedown", tempsPressed);
-firstElem.addEventListener("mousedown", tempsPressed);
-function tempsPressed() {
-  if (temps.style.visibilty = "visible") {
-    temps.style.visibility = "hidden";
-    firstElem.style.visibility = "visible";
-    firstElem.textContent = "Temps Hidden";
+tempTable.addEventListener("mousedown", tempsMousedown);
+unhideTemps.addEventListener("mousedown", tempsMousedown);
+tempTable.addEventListener("mouseup", tempsMouseup);
+unhideTemps.addEventListener("mouseup", tempsMouseup);
+let timeoutID;
+
+// Start waiting to toggle the visibility
+function tempsMousedown() {
+  timeoutID = setTimeout(timePress, 1000);
+}
+
+// Toggle the visibility
+function timePress() {
+  if (tempTable.style.visibility == "visible") {
+    tempTable.style.visibility = "hidden";
+    unhideTemps.style.display = "initial";
   } else {
-    temps.style.visibility = "visible";
+    tempTable.style.visibility = "visible";
+    unhideTemps.style.display = "none";
   }
 }
+
+// If mouse comes up prematurely, timeout is cleared and
+// state does not change
+function tempsMouseup() {
+  clearTimeout(timeoutID);
+}
+
+
 
 // Continuous loop writing new values to the screen
 function write_data() {    
@@ -109,42 +129,11 @@ function write_data() {
 // Only use test data if "dev" Node env var is present
 // Examples: dev=1 npm start, dev=0 npm start, dev=lsjdkl npm start
 if (process.env.dev) {
-  b.set(curr_soc); // start up soc bar
   write_data();
 }
 
 
-//Reads in stdout, processes data to display on screen.
-// processInputs.stdout.on("data", data => {
-//  var str = data.toString();
-//  let buf = str.split(":");
-//  if (buf[0] == "soc") {                     // SOC
-//    b.set(parseInt(buf[1]));
-//    // Don't know how to do the SOC loading bar
 
-//  } else if (buf[0] == "rpm") {              // RPM
-//    let newbuf = buf[1].split("\n");
-//    if (newbuf[0].trim().length != 0) {
-//      curr_rpm = newbuf[0];
-//    }
-//    console.log("RPM:" + curr_rpm);
-//    rpm.textContent = "RPM: " + curr_rpm;
-//  } else if (buf[0] == "mctemp") {           // MC Temp
-//   let newbuf = buf[1].split("\n");
-//   if (newbuf[0].trim().length != 0) {
-//     curr_mctemp = newbuf[0];
-//   }
-//   console.log("MC Temp:" + curr_mctemp);
-//   maxMCTemp.textContent = "Highest MC Temp: " + curr_mctemp;   
-//  } else if (buf[0] == "motortemp") {        // Motor Temp
-//   let newbuf = buf[1].split("\n");
-//   if (newbuf[0].trim().length != 0) {
-//     curr_motortemp = newbuf[0];
-//   }
-//   console.log("Motor Temp:" + curr_motortemp);
-//   motorTemp.textContent = "Motor Temp: " + curr_motortemp; 
-//  }
-// });
 
 channel.addListener("onMessage", function(msg) {
   switch (msg["id"]) {
