@@ -50,35 +50,40 @@ b.set(curr_soc); // start up soc bar
 
 // Long-press show/hide functionality for temps div
 //DOES NOT WORK YET
-tempTable.addEventListener("mousedown", tempsMousedown);
-unhideTemps.addEventListener("mousedown", tempsMousedown);
-tempTable.addEventListener("mouseup", tempsMouseup);
-unhideTemps.addEventListener("mouseup", tempsMouseup);
+tempTable.addEventListener("click", tempsClickTimer);
+unhideTemps.addEventListener("click", tempsClickTimer);
+tempTable.addEventListener("click", tempsClickCounter);
+unhideTemps.addEventListener("click", tempsClickCounter);
+let taps = 0;
 let timeoutID;
+let maxTime = 500; // have to double click/tap in half a second
 
 // Start waiting to toggle the visibility
-function tempsMousedown() {
-  timeoutID = setTimeout(timePress, 1000);
-}
-
-// Toggle the visibility
-function timePress() {
-  if (tempTable.style.visibility == "visible") {
-    tempTable.style.visibility = "hidden";
-    unhideTemps.style.display = "initial";
-  } else {
-    tempTable.style.visibility = "visible";
-    unhideTemps.style.display = "none";
+function tempsClickTimer() {
+  if (timeoutID == null) {
+    timeoutID = setTimeout(doubleClicked, maxTime);
   }
 }
 
-// If mouse comes up prematurely, timeout is cleared and
-// state does not change
-function tempsMouseup() {
-  clearTimeout(timeoutID);
+// Count the mouse clicks
+function tempsClickCounter() {
+  taps += 1;
 }
 
-
+// Toggle the visibility
+function doubleClicked() {
+  if (taps == 2) {
+    if (tempTable.style.visibility == "visible") {
+      tempTable.style.visibility = "hidden";
+      unhideTemps.style.display = "initial";
+    } else {
+      tempTable.style.visibility = "visible";
+      unhideTemps.style.display = "none";
+    }
+  }
+  taps = 0;
+  timeoutID = null;
+}
 
 // Continuous loop writing new values to the screen
 function write_data() {    
