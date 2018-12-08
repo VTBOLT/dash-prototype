@@ -29,6 +29,8 @@ let maxMotorTemp = document.getElementById("maxMotorTemp");
 let maxCellTemp = document.getElementById("maxCellTemp");
 let minCellTemp = document.getElementById("minCellTemp");
 let socText = document.getElementById("soc");
+let temps = document.getElementById("temps");
+let firstElem = document.getElementById("firstElem");
 
 //Loading bar object imported from loading-bar.*
 let b1 = document.querySelector(".ldBar");
@@ -42,66 +44,72 @@ let curr_motortemp = 30.0;
 let curr_maxmotortemp = 30.0;
 let curr_maxcelltemp = 120.0
 let curr_mincelltemp = 102.0
+let counter = 51; // analagous to "temp" on BOLT_3_Dash
 
-// clean sleep function for js
-// https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+// Long-press show/hide functionality for temps div
+//DOES NOT WORK YET
+temps.addEventListener("mousedown", tempsPressed);
+firstElem.addEventListener("mousedown", tempsPressed);
+function tempsPressed() {
+  if (temps.style.visibilty = "visible") {
+    temps.style.visibility = "hidden";
+    firstElem.style.visibility = "visible";
+    firstElem.textContent = "Temps Hidden";
+  } else {
+    temps.style.visibility = "visible";
+  }
 }
 
 // Continuous loop writing new values to the screen
-async function write_data() {
-  let counter = 51; // analagous to "temp" on BOLT_3_Dash
-  b.set(curr_soc); // start up soc bar
-  while (true) {
-    await sleep(100);
-    
-    // update other things less often
-    if (counter > 50) {
-      curr_soc -= 0.1;
-      curr_maxmctemp += 0.01;
-      curr_motortemp += 1.0;
-      curr_maxcelltemp += 0.01;
-      curr_mincelltemp += 0.01;
-      //test for new max motor temp
-      if (curr_motortemp > curr_maxmotortemp) {
-        curr_maxmotortemp = curr_motortemp;
-        maxMotorTemp.textContent = curr_maxmotortemp.toString();
-      }
-      counter = 0;
-      maxMCTemp.textContent = curr_maxmctemp.toString().substring(0, 5);
-      motorTemp.textContent = curr_motortemp.toString();
-      maxCellTemp.textContent = curr_maxcelltemp.toString().substring(0, 6);
-      minCellTemp.textContent = curr_mincelltemp.toString().substring(0, 6);
-      b.set(curr_soc);
-      socText.textContent = "SOC: " + curr_soc.toString().substring(0, 4);
+function write_data() {    
+  // update other things less often
+  if (counter > 50) {
+    curr_soc -= 0.1;
+    curr_maxmctemp += 0.01;
+    curr_motortemp += 1.0;
+    curr_maxcelltemp += 0.01;
+    curr_mincelltemp += 0.01;
+    //test for new max motor temp
+    if (curr_motortemp > curr_maxmotortemp) {
+      curr_maxmotortemp = curr_motortemp;
+      maxMotorTemp.textContent = curr_maxmotortemp.toString();
     }
-    
-    // soc overflow
-    if (curr_soc <= 0) {
-      curr_soc = 99.0;
-    }
-
-    // rpm overflow
-    if (curr_rpm > 8500) {
-      curr_rpm = 0;
-    }
-    
-    // motor temp overflow
-    if (curr_motortemp > 40) {
-      curr_motortemp = 10;
-    }
-
-    // update rpm every pass
-    rpm.textContent = "RPM: " + curr_rpm.toString();
-    curr_rpm += 100;
-    counter++;
+    counter = 0;
+    maxMCTemp.textContent = curr_maxmctemp.toString().substring(0, 5);
+    motorTemp.textContent = curr_motortemp.toString();
+    maxCellTemp.textContent = curr_maxcelltemp.toString().substring(0, 6);
+    minCellTemp.textContent = curr_mincelltemp.toString().substring(0, 6);
+    b.set(curr_soc);
+    socText.textContent = "SOC: " + curr_soc.toString().substring(0, 4);
   }
+  
+  // soc overflow
+  if (curr_soc <= 0) {
+    curr_soc = 99.0;
+  }
+
+  // rpm overflow
+  if (curr_rpm > 8500) {
+    curr_rpm = 0;
+  }
+  
+  // motor temp overflow
+  if (curr_motortemp > 40) {
+    curr_motortemp = 10;
+  }
+
+  // update rpm every pass
+  rpm.textContent = "RPM: " + curr_rpm.toString();
+  curr_rpm += 100;
+  counter++;
+  
+  setTimeout(write_data, 100);
 }
 
 // Only use test data if "dev" Node env var is present
 // Examples: dev=1 npm start, dev=0 npm start, dev=lsjdkl npm start
 if (process.env.dev) {
+  b.set(curr_soc); // start up soc bar
   write_data();
 }
 
