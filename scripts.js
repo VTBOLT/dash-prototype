@@ -26,6 +26,29 @@ var b = new ldBar(b1);
 
 let curr_soc = 0;
 let curr_rpm = 0;
+
+//create functions for buttons
+
+function DebugFunction() {
+    alert("Debug Button Working");
+    return true;
+}
+
+function AnalyzeFunction() {
+    alert("Analyze Button Working");
+    return true;
+}
+
+function TempFunction() {
+    alert("Temp Button Working");
+    return true;
+}
+
+function SettingsFunction() {
+    alert("Settings Button Working");
+    return true;
+}
+
 //Reads in stdout, processes data to display on screen.
 //processInputs.stdout.on("data", data => {
 //  var str = data.toString();
