@@ -3,28 +3,62 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="./loading-bar.css" />
+    <link rel="stylesheet" type="text/css" href="./Debug2.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <script type="text/javascript" src="./loading-bar.js"></script>
-
 </head>
 
 <body>
     <div>
-
         <h1 id="rpm">
             RPM: 0
         </h1>
         <br>
-        <!-- <h1 id="soc">
+        <h1 id="soc">
             SOC: 0
-        </h1> -->
+        </h1>
         <div class="ldBar" data-value="0" data-preset="energy"></div>
     </div>
     </div>
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'>
-    </script>
+    <!-- Format space -->
+    <br>
+    <br>
+    <!-- Open The Modal -->
+    <button id="myBtn">Open Debug Screen</button>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Row 1 -->
+      <div class="flex-container" style="height: 37.5%">
+        <div><h1 class="param">RPM:</h1><p class="data">0</p></div>
+        <div><h1 class="param">SOC:</h1><p class="data">0</p></div>
+        <div><h1 class="param">MC TEMP:</h1><p class="data">0</p></div>
+        <div><h1 class="param">MOTOR TEMP:</h1><p class="data">0</p></div>
+        <div><h1 class="param">HIGH CELL TEMP:</h1><p class="data">0</p></div>
+      </div>
+      <!-- Row 2 -->
+      <div class="flex-container" style="height: 37.5%">
+        <div><h1 class="param">LOW CELL TEMP:</h1><p class="data">0</p></div>
+        <div><h1 class="param">HIGH MTR TEMP:</h1><p class="data">0</p></div>
+        <div><h1 class="param">DCL:</h1><p class="data">0</p></div>
+        <div><h1 class="param">9:</h1><p class="data">0</p></div>
+        <div><h1 class="param">10:</h1><p class="data">0</p></div>
+      </div>
+      <!-- Row 3 -->
+      <div class="flex-container" style="height: 11%">
+        <div><h1 class="param">Error Code: 12345</h1></div>
+        <div><h1 class="param">DCL: ?</h1></div>
+      </div>
+      <!-- Row 4 -->
+      <div class="close" style="height: 11%">
+          <div>Close</div>
+      </div>
+    </div>
+
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js'></script>
 
     <script src="./scripts.js"></script>
+    <script src="./Debug.js"></script>
 
 </body>
 
