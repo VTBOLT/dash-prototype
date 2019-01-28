@@ -31,11 +31,12 @@ tr:nth-child(odd) {
 }
 
 #unhidetemps {
-    font-family: 'tahoma';
-    font-size: 12px;
-    box-shadow: 5px 5px 2px grey;
-    padding: 10px;
-    background-color: #ebebebb4;
+    padding: 25px;
+    /* Border for debugging, can be removed if desired */
+    border: 1px solid black;
+    position: fixed;
+    top: 0;
+    right: 0;
 }
 
 #notTemps {
