@@ -19,7 +19,8 @@ let motorTemp = document.getElementById("motorTemp");
 let maxMotorTemp = document.getElementById("maxMotorTemp");
 let maxCellTemp = document.getElementById("maxCellTemp");
 let minCellTemp = document.getElementById("minCellTemp");
-let socText = document.getElementById("soc");
+let socGauge = document.getElementById("SOCGauge");
+let socText = document.getElementById("SOCText");
 let tempTable = document.getElementById("tempTable");
 let unhideTemps = document.getElementById("unhidetemps");
 unhideTemps.style.display = "none";
@@ -33,11 +34,6 @@ let curr_maxmotortemp = 30.0;
 let curr_maxcelltemp = 120.0
 let curr_mincelltemp = 102.0
 let counter = 51; // analagous to "temp" on BOLT_3_Dash
-
-//Loading bar object imported from loading-bar.*
-let b1 = document.querySelector(".ldBar");
-let b = new ldBar(b1);
-b.set(curr_soc); // start up soc bar
 
 // Long-press show/hide functionality for temps div
 //DOES NOT WORK YET
@@ -95,8 +91,8 @@ function write_data() {
     motorTemp.textContent = curr_motortemp.toString();
     maxCellTemp.textContent = curr_maxcelltemp.toString().substring(0, 6);
     minCellTemp.textContent = curr_mincelltemp.toString().substring(0, 6);
-    b.set(curr_soc);
-    socText.textContent = "SOC: " + curr_soc.toString().substring(0, 4);
+    socText.textContent = curr_soc.toString().substring(0, 4) + "%";
+    socGauge.value = curr_soc;
   }
   
   // soc overflow

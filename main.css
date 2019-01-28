@@ -23,6 +23,23 @@ tr:nth-child(odd) {
     width: 85px;
 }
 
+#SOCGauge {
+    width: 250px;
+    height: 55px;
+    box-shadow: 5px 5px 2px grey;
+}
+
+#SOCText {
+    font-family: 'digital-7';
+    display: inline-block;
+    font-size: 55px;
+    margin-left: 10px;
+    box-shadow: 5px 5px 2px grey;
+    background-color: #ebebebb4;
+    width: 130px;
+    text-align: center;
+}
+
 #temps {
     float: right;
     text-align: right;
