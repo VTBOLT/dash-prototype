@@ -3,10 +3,10 @@
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    left: 25%; /* Location of the box */
-    top: 25%;
-    width: 50%; /* Size of the Box */
-    height: 50%;
+    left: 12.5%; /* Location of the box */
+    top: 12.5%;
+    width: 75%; /* Size of the Box */
+    height: 75%;
     overflow: auto; /* Enable scroll if needed */
     background-color: #cdcdcd; /* Light grey */
 }
@@ -39,7 +39,7 @@
     background: #ff6d19;
     text-align: center;
     line-height: 10px;
-    margin: 5px;
+    margin: 0.5% 0.5%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     font-family: 'Roboto', sans-serif;
 }
