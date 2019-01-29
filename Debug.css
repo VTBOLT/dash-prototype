@@ -23,9 +23,9 @@
     flex: 1 0 2px;
     color: #ffffff;
     font-family: calibri;
-    font-size: 20px;
+    font-size: 2vw;           
     text-align: center;
-    line-height: 30px;
+    line-height: 20px;
     margin: 5px auto;
 }
 /* Flexbox Container*/
@@ -38,20 +38,21 @@
     flex: 1 0 2px;
     background: #ff6d19;
     text-align: center;
-    line-height: 10px;
+    line-height: 0px;
     margin: 0.5% 0.5%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(238, 209, 209, 0.19);
     font-family: 'Roboto', sans-serif;
 }
 /* Parameters */
 h1.param {
   font-family: 'Roboto', sans-serif;
-  font-size: 15px;
+  font-size: 1.5vw; 
   color: #ffffff;
 }
 /* Numbers */
 p.data {
   font-family: 'Roboto', sans-serif;
-  font-size: 50px;
+  font-size: 8vw; 
   color: #ffffff;
+  margin-top: 6vw; /* controls how far the numbers lie below the heading */
 }
