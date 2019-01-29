@@ -28,6 +28,7 @@ tr:nth-child(odd) {
     text-align: right;
     font-family: 'tahoma';
     font-size: 12px;
+    user-select: none; /* Text doesn't highlight when double clicked/tapped */
 }
 
 #showTemps {
@@ -39,6 +40,7 @@ tr:nth-child(odd) {
     font-family: 'tahoma';
     font-size: 12px;
     display: none;
+    user-select: none; /* Text doesn't highlight when double clicked/tapped */
 }
 
 #notTemps {
