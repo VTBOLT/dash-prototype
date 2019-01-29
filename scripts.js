@@ -21,8 +21,7 @@ let maxCellTemp = document.getElementById("maxCellTemp");
 let minCellTemp = document.getElementById("minCellTemp");
 let socText = document.getElementById("soc");
 let tempTable = document.getElementById("tempTable");
-let unhideTemps = document.getElementById("unhidetemps");
-unhideTemps.style.display = "none";
+let showTemps = document.getElementById("showTemps");
 
 // Set initial values for data
 let curr_soc = 92.0;
@@ -39,12 +38,11 @@ let b1 = document.querySelector(".ldBar");
 let b = new ldBar(b1);
 b.set(curr_soc); // start up soc bar
 
-// Long-press show/hide functionality for temps div
-//DOES NOT WORK YET
+// Double tap functionality for temps visibility
 tempTable.addEventListener("click", tempsClickTimer);
-unhideTemps.addEventListener("click", tempsClickTimer);
+showTemps.addEventListener("click", tempsClickTimer);
 tempTable.addEventListener("click", tempsClickCounter);
-unhideTemps.addEventListener("click", tempsClickCounter);
+showTemps.addEventListener("click", tempsClickCounter);
 let taps = 0;
 let timeoutID;
 let maxTime = 500; // have to double click/tap in half a second
@@ -66,10 +64,10 @@ function doubleClicked() {
   if (taps == 2) {
     if (tempTable.style.visibility == "visible") {
       tempTable.style.visibility = "hidden";
-      unhideTemps.style.display = "initial";
+      showTemps.style.display = "initial";
     } else {
       tempTable.style.visibility = "visible";
-      unhideTemps.style.display = "none";
+      showTemps.style.display = "none";
     }
   }
   taps = 0;
