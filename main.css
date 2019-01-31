@@ -27,13 +27,15 @@ tr:nth-child(odd) {
     width: 250px;
     height: 55px;
     box-shadow: 5px 5px 2px grey;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 #SOCText {
     font-family: 'digital-7';
     display: inline-block;
+    vertical-align: middle;
     font-size: 55px;
-    margin-left: 10px;
     box-shadow: 5px 5px 2px grey;
     background-color: #ebebebb4;
     width: 130px;
