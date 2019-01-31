@@ -19,7 +19,7 @@ let motorTemp = document.getElementById("motorTemp");
 let maxMotorTemp = document.getElementById("maxMotorTemp");
 let maxCellTemp = document.getElementById("maxCellTemp");
 let minCellTemp = document.getElementById("minCellTemp");
-let socText = document.getElementById("soc");
+//let soc = document.getElementById("soc");
 let tempTable = document.getElementById("tempTable");
 let showTemps = document.getElementById("showTemps");
 
@@ -33,10 +33,39 @@ let curr_maxcelltemp = 120.0
 let curr_mincelltemp = 102.0
 let counter = 51; // analagous to "temp" on BOLT_3_Dash
 
-//Loading bar object imported from loading-bar.*
-let b1 = document.querySelector(".ldBar");
-let b = new ldBar(b1);
-b.set(curr_soc); // start up soc bar
+// Initialize SOC ProgressBar
+var socBar = new ProgressBar.Line("#soc", {
+  strokeWidth: 20,
+  easing: 'easeInOut',
+  duration: 1000,
+  color: '#ff0000',
+  trailColor: '#eee',
+  trailWidth: 1,
+  svgStyle: {width: '100%', height: '100%'},
+  text: {
+    style: {
+      // text sits directly to right of bar
+      color: '#000000',
+      fontFamily: 'tahoma',
+      fontSize: '10px',
+      left: '5px',
+      top: '10px',
+      padding: 0,
+      margin: 0,
+      transform: null
+    },
+    autoStyleContainer: false
+  },
+  // color gradient: low-red, high-green, with sharp change around 20%
+  from: {color: '#ff0000', a:0},
+  to: {color: '#008000', a:20},
+  step: (state, socBar) => {
+   socBar.path.setAttribute('stroke', state.color);
+   // display nearest tenth of a percent
+   socBar.setText((100 * socBar.value()).toString().substring(0, 4) + '%');
+  }
+});
+socBar.animate(1.0);
 
 // Double tap functionality for temps visibility
 tempTable.addEventListener("click", tempsClickTimer);
@@ -93,8 +122,7 @@ function write_data() {
     motorTemp.textContent = curr_motortemp.toString();
     maxCellTemp.textContent = curr_maxcelltemp.toString().substring(0, 6);
     minCellTemp.textContent = curr_mincelltemp.toString().substring(0, 6);
-    b.set(curr_soc);
-    socText.textContent = "SOC: " + curr_soc.toString().substring(0, 4);
+    socBar.animate(curr_soc / 100.0);
   }
   
   // soc overflow
