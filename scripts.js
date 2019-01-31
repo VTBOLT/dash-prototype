@@ -19,9 +19,18 @@ let motorTemp = document.getElementById("motorTemp");
 let maxMotorTemp = document.getElementById("maxMotorTemp");
 let maxCellTemp = document.getElementById("maxCellTemp");
 let minCellTemp = document.getElementById("minCellTemp");
-let socText = document.getElementById("soc");
 let tempTable = document.getElementById("tempTable");
 let showTemps = document.getElementById("showTemps");
+let soc = new JustGage({
+  id: "SOCGauge",
+  value: 92,
+  valueFontFamily: "Tahoma",
+  valueFontSize: "50px",
+  min: 0,
+  max: 100,
+  decimals: 1,
+  levelColors: [ "#ff0000", "#ffff00", "#008000" ]
+});
 
 // Set initial values for data
 let curr_soc = 92.0;
@@ -32,11 +41,6 @@ let curr_maxmotortemp = 30.0;
 let curr_maxcelltemp = 120.0
 let curr_mincelltemp = 102.0
 let counter = 51; // analagous to "temp" on BOLT_3_Dash
-
-//Loading bar object imported from loading-bar.*
-let b1 = document.querySelector(".ldBar");
-let b = new ldBar(b1);
-b.set(curr_soc); // start up soc bar
 
 // Double tap functionality for temps visibility
 tempTable.addEventListener("click", tempsClickTimer);
@@ -93,8 +97,7 @@ function write_data() {
     motorTemp.textContent = curr_motortemp.toString();
     maxCellTemp.textContent = curr_maxcelltemp.toString().substring(0, 6);
     minCellTemp.textContent = curr_mincelltemp.toString().substring(0, 6);
-    b.set(curr_soc);
-    socText.textContent = "SOC: " + curr_soc.toString().substring(0, 4);
+    soc.refresh(curr_soc);
   }
   
   // soc overflow
