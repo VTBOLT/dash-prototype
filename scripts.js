@@ -22,6 +22,7 @@ let minCellTemp = document.getElementById("minCellTemp");
 //let soc = document.getElementById("soc");
 let tempTable = document.getElementById("tempTable");
 let showTemps = document.getElementById("showTemps");
+let svgBox = document.getElementById("svg");
 
 // Set initial values for data
 let curr_soc = 92.0;
@@ -35,7 +36,7 @@ let counter = 51; // analagous to "temp" on BOLT_3_Dash
 
 // Initialize SOC ProgressBar
 var socBar = new ProgressBar.Line("#soc", {
-  strokeWidth: 20,
+  strokeWidth: 23,
   easing: 'easeInOut',
   duration: 1000,
   color: '#ff0000',
@@ -58,7 +59,7 @@ var socBar = new ProgressBar.Line("#soc", {
   },
   // color gradient: low-red, high-green, with sharp change around 20%
   from: {color: '#ff0000', a:0},
-  to: {color: '#008000', a:20},
+  to: {color: '#3c643c', a:20},
   step: (state, socBar) => {
    socBar.path.setAttribute('stroke', state.color);
    // display nearest tenth of a percent
@@ -66,6 +67,7 @@ var socBar = new ProgressBar.Line("#soc", {
   }
 });
 socBar.animate(1.0);
+svgBox.setAttribute("width", (285 * (curr_soc / 100.0)).toString());
 
 // Double tap functionality for temps visibility
 tempTable.addEventListener("click", tempsClickTimer);
@@ -123,6 +125,7 @@ function write_data() {
     maxCellTemp.textContent = curr_maxcelltemp.toString().substring(0, 6);
     minCellTemp.textContent = curr_mincelltemp.toString().substring(0, 6);
     socBar.animate(curr_soc / 100.0);
+    svgBox.setAttribute("width", (285 * (curr_soc / 100.0)).toString());
   }
   
   // soc overflow
