@@ -4,29 +4,13 @@
 <head>
     <link rel="stylesheet" type="text/css" href="./loading-bar.css" />
     <script type="text/javascript" src="./loading-bar.js"></script>
-
+<script>
+    window.toolbar.visible = !window.toolbar.visible;
+</script>
 </head>
 
 <body>
     <form action="">
-        <div>
-            <select id="DebugButton" onchange="DebugFunction()">
-                <option>Debug</option>
-                <option value="OpenDebug">Open Debug Window</option>
-                <option value="CloseDebug">Close Debug Window</option>
-            </select>
-            <select id="AnalyzeButton" onchange="AnalyzeFunction()">
-                <option>Analze</option>
-                <option value="rpm">Graph RPM</option>
-                <option value="soc">Graph SOC</option>
-            </select>
-            <button id="TempButton" onclick="TempFunction()">Temp</button>
-            <select id="SettingsButton" onchange="SettingsFunction()">
-                <option>Settings</option>
-                <option value="OpenSettings">Open Temp Display</option>
-                <option value="CloseSettings">Close Temp Display</option>
-            </select>
-        </div>
         <h1 id="rpm">
             RPM: 0
         </h1>

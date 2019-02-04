@@ -29,10 +29,23 @@ let curr_rpm = 0;
 
 //create functions for buttons
 
-function DebugFunction() {
-    alert("Debug Button Working");
-    return true;
-}
+
+$(function () {
+    $.contextMenu({
+        selector: '.debug_menu',
+        trigger: 'left',
+        callback: function (key, options) {
+            var m = "clicked: " + key;
+            window.console && console.log(m) || alert(m);
+        },
+        items: {
+            "Open": { name: "Open Debug Menu" },
+            "Close": { name: "Close Debug Menu" },
+            "quit": { name: "Quit", icon: function ($element, key, item) { return 'context-menu-icon context-menu-icon-quit'; } }
+        }
+  
+    });
+});
 
 function AnalyzeFunction() {
     alert("Analyze Button Working");
