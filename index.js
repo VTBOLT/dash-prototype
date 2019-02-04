@@ -43,7 +43,7 @@ function createWindow() {
         {
             label: 'Settings',
             submenu: [
-                {
+                { 
                     label:'Open Temp Display',
                     click(){}
                 },
