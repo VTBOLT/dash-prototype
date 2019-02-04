@@ -22,7 +22,7 @@ let minCellTemp = document.getElementById("minCellTemp");
 //let soc = document.getElementById("soc");
 let tempTable = document.getElementById("tempTable");
 let showTemps = document.getElementById("showTemps");
-let svgBox = document.getElementById("svg");
+
 
 // Set initial values for data
 let curr_soc = 92.0;
@@ -42,7 +42,7 @@ var socBar = new ProgressBar.Line("#soc", {
   color: '#ff0000',
   trailColor: '#eee',
   trailWidth: 1,
-  svgStyle: {width: '82%', height: '100%'},
+  svgStyle: {width: '80%', height: '100%'},
   text: {
     style: {
       // text sits directly to right of bar
@@ -50,10 +50,10 @@ var socBar = new ProgressBar.Line("#soc", {
       fontFamily: 'tahoma',
       fontSize: '25px',
       display: 'inline-block',
-      verticalAlign: '60%',
+      verticalAlign: '55%',
       padding: 0,
       margin: 0,
-      transform: null
+      transform: 'translate(5px, -5px)',
     },
     autoStyleContainer: false
   },
@@ -67,7 +67,7 @@ var socBar = new ProgressBar.Line("#soc", {
   }
 });
 socBar.animate(1.0);
-svgBox.setAttribute("width", (285 * (curr_soc / 100.0)).toString());
+
 
 // Double tap functionality for temps visibility
 tempTable.addEventListener("click", tempsClickTimer);
@@ -125,7 +125,6 @@ function write_data() {
     maxCellTemp.textContent = curr_maxcelltemp.toString().substring(0, 6);
     minCellTemp.textContent = curr_mincelltemp.toString().substring(0, 6);
     socBar.animate(curr_soc / 100.0);
-    svgBox.setAttribute("width", (285 * (curr_soc / 100.0)).toString());
   }
   
   // soc overflow

@@ -3,6 +3,10 @@
     src: url('digital-7.ttf');
 }
 
+svg {
+    filter: drop-shadow(10px 10px 10px rgb(104, 104, 104));
+}
+
 td {
     padding: 4px;
     text-align: center;
@@ -21,19 +25,6 @@ tr:nth-child(odd) {
     font-family: 'digital-7';
     font-size: 30px;
     width: 85px;
-}
-
-#socbox {
-    fill: none;
-    stroke-width: 5px;
-    stroke: black;
-    width: 285px;
-    height: 67px;
-    shape-rendering: crispEdges;
-}
-
-#soc {
-    margin-bottom: -71px;
 }
 
 #temps {
