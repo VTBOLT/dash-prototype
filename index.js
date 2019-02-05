@@ -1,4 +1,6 @@
-const { app, BrowserWindow, Menu} = require("electron");
+const {app, BrowserWindow, Menu, dialog} = require("electron");
+
+const options = {message:'button working!'};
 
 function createWindow() {
   // Create the browser window.
@@ -10,11 +12,11 @@ function createWindow() {
             submenu: [
                 {
                     label:'Open Debug Menu',
-                    click(){}
+                    click(){dialog.showMessageBox(win,{message:'open debug'})}
                 },
                 {
                     label:'Close Debug Menu',
-                    click(){}
+                    click(){dialog.showMessageBox(win,{message:'close debug'})}
                 },
             ]
 
@@ -25,11 +27,11 @@ function createWindow() {
             submenu: [
                 {
                     label:'Graph RPM',
-                    click(){}
+                    click(){dialog.showMessageBox(win,{message:'graph rpm'})}
                 },
                 {
                     label:'Graph SOC',
-                    click(){}
+                    click(){dialog.showMessageBox(win,{message:'graph soc'})}
                 },
             ]
 
@@ -37,7 +39,7 @@ function createWindow() {
 
         {
             label: 'Temp',
-            click(){}
+            click(){dialog.showMessageBox(win,{message:'temp'})}
         },
 
         {
@@ -45,11 +47,11 @@ function createWindow() {
             submenu: [
                 { 
                     label:'Open Temp Display',
-                    click(){}
+                    click(){dialog.showMessageBox(win,{message:'open temp'})}
                 },
                 {  
                     label:'Close Temp Display',
-                    click(){}
+                    click(){dialog.showMessageBox(win,{message:'close temp'})}
                 },
             ]
 
