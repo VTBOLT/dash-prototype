@@ -5,6 +5,7 @@ Requires `node v8.12.0^`
 `npm install` To install dependencies
 
 `npm start` To start the app.
+`npm test` To start the app with test data.
 
 # sc-test (can data)
 
