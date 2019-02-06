@@ -40,8 +40,7 @@ var socBar = new ProgressBar.Line("#soc", {
   easing: 'easeInOut',
   duration: 1000,
   color: '#ff0000',
-  trailColor: '#000000',
-  trailWidth: 1,
+  trail: 'none',
   svgStyle: {width: '80%', height: '100%'},
   text: {
     style: {
@@ -50,8 +49,8 @@ var socBar = new ProgressBar.Line("#soc", {
       fontFamily: 'digital-7',
       fontSize: '38px',
       position: 'fixed',
-      top: '262px',
-      right: '236px',
+      top: '256px',
+      right: '235px',
     },
     autoStyleContainer: false
   },
