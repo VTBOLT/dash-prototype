@@ -30,8 +30,8 @@ let curr_rpm = 1000;
 let curr_maxmctemp = 98.0;
 let curr_motortemp = 30.0;
 let curr_maxmotortemp = 30.0;
-let curr_maxcelltemp = 120.0;
-let curr_mincelltemp = 102.0;
+let curr_maxcelltemp = 120.0
+let curr_mincelltemp = 102.0
 let counter = 51; // analagous to "temp" on BOLT_3_Dash
 
 //Loading bar object imported from loading-bar.*
@@ -39,12 +39,6 @@ let b1 = document.querySelector(".ldBar");
 let b = new ldBar(b1);
 b.set(curr_soc); // start up soc bar
 
-var bar = new ProgressBar.Path("#rpm-path", {
-  easing: "easeInOut",
-  duration: 1
-});
-
-bar.set(0);
 // Long-press show/hide functionality for temps div
 //DOES NOT WORK YET
 tempTable.addEventListener("click", tempsClickTimer);
@@ -83,7 +77,7 @@ function doubleClicked() {
 }
 
 // Continuous loop writing new values to the screen
-function write_data() {
+function write_data() {    
   // update other things less often
   if (counter > 50) {
     curr_soc -= 0.1;
@@ -104,7 +98,7 @@ function write_data() {
     b.set(curr_soc);
     socText.textContent = "SOC: " + curr_soc.toString().substring(0, 4);
   }
-
+  
   // soc overflow
   if (curr_soc <= 0) {
     curr_soc = 99.0;
@@ -114,19 +108,17 @@ function write_data() {
   if (curr_rpm > 8500) {
     curr_rpm = 0;
   }
-
+  
   // motor temp overflow
   if (curr_motortemp > 40) {
     curr_motortemp = 10;
   }
 
   // update rpm every pass
-  //rpm.textContent = "RPM: " + curr_rpm.toString();
+  rpm.textContent = "RPM: " + curr_rpm.toString();
   curr_rpm += 100;
-  console.log(curr_rpm / 8500);
-  bar.animate(curr_rpm / 8500);
   counter++;
-
+  
   setTimeout(write_data, 100);
 }
 
@@ -135,6 +127,8 @@ function write_data() {
 if (process.env.dev) {
   write_data();
 }
+
+
 
 // channel.addListener("onMessage", function(msg) {
 //   switch (msg["id"]) {
