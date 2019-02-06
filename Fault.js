@@ -1,17 +1,22 @@
 function changeFault(key) {
     var body = document.getElementById('body');
     var text = document.getElementById('rpm');
+    var text2 = document.getElementById('soc');
     if (key == "h") {
-        body.style.backgroundColor = "red";
-        text.style.color = "black";
+        body.style.backgroundColor = "red"; //red
+        text.style.color = "white";
+        text2.style.color = "white";
     }else if (key == "m") {
-        body.style.backgroundColor = "yellow";
+        body.style.backgroundColor = "#ffff99"; //yellow
         text.style.color = "black";
+        text2.style.color = "black";
     }else if (key == "l") {
-        body.style.backgroundColor = "white";
-        text.style.color = "blue";
-    }else if (key == "n") {
-        body.style.backgroundColor = "white";
+        body.style.backgroundColor = "#ADD8E6"; //blue
         text.style.color = "black";
+        text2.style.color = "black";
+    }else if (key == "n") {
+        body.style.backgroundColor = "white";  //white
+        text.style.color = "black";
+        text2.style.color = "black";
     }
   }

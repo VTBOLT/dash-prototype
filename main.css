@@ -24,7 +24,6 @@ tr:nth-child(odd) {
 }
 
 #temps {
-    float: right;
     text-align: right;
     font-family: 'tahoma';
     font-size: 12px;
@@ -36,8 +35,16 @@ tr:nth-child(odd) {
     box-shadow: 5px 5px 2px grey;
     padding: 10px;
     background-color: #ebebebb4;
+    
 }
 
 #notTemps {
-    float: left;
+    
+}
+
+#container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
 }
