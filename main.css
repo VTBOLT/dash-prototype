@@ -3,14 +3,11 @@
     src: url('digital-7.ttf');
 }
 
-svg {
-    filter: drop-shadow(10px 10px 10px rgb(104, 104, 104));
-}
-
 td {
     padding: 4px;
     text-align: center;
-    box-shadow: 5px 5px 2px grey;
+    box-shadow: 3px 3px 2px grey;
+    border-radius: 7px;
 }
 
 tr:nth-child(even) {
@@ -27,7 +24,48 @@ tr:nth-child(odd) {
     width: 85px;
 }
 
+#logo {
+    width: 200px;
+    height: 84px;
+    position: fixed;
+    right: 8px;
+    top: 205px;
+    opacity: 0.8;
+}
+
+#socBG {
+    width: 120px;
+    height: 330px;
+    position: fixed;
+    top: 2px;
+    right: 208px;
+    z-index: -1;
+}
+
+#socBG rect {
+    width: 90px;
+    height: 295px;
+    fill: #ebebebb4;
+}
+
+#soc svg {
+    /* filter: drop-shadow(-10px 10px 3px rgb(104, 104, 104)); */
+    transform-origin: 150px 100px;
+    transform: rotate(-90deg);
+}
+
+#soc {
+    float: right;
+    position: fixed;
+    /* Awkward numbers bc of the rotation */
+    top: 10px;
+    right: 40px;
+}
+
 #temps {
+    position: fixed;
+    top: 8px;
+    right: 10px;
     float: right;
     text-align: right;
     font-family: 'tahoma';

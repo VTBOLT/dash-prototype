@@ -40,20 +40,18 @@ var socBar = new ProgressBar.Line("#soc", {
   easing: 'easeInOut',
   duration: 1000,
   color: '#ff0000',
-  trailColor: '#eee',
+  trailColor: '#000000',
   trailWidth: 1,
   svgStyle: {width: '80%', height: '100%'},
   text: {
     style: {
-      // text sits directly to right of bar
+      // text sits directly underneath vertical bar
       color: '#000000',
-      fontFamily: 'tahoma',
-      fontSize: '25px',
-      display: 'inline-block',
-      verticalAlign: '55%',
-      padding: 0,
-      margin: 0,
-      transform: 'translate(5px, -5px)',
+      fontFamily: 'digital-7',
+      fontSize: '38px',
+      position: 'fixed',
+      top: '262px',
+      right: '236px',
     },
     autoStyleContainer: false
   },
@@ -63,7 +61,7 @@ var socBar = new ProgressBar.Line("#soc", {
   step: (state, socBar) => {
    socBar.path.setAttribute('stroke', state.color);
    // display nearest tenth of a percent
-   socBar.setText((100 * socBar.value()).toString().substring(0, 4));
+   socBar.setText((100.0 * socBar.value()).toString().substring(0, 4));
   }
 });
 socBar.animate(1.0);
