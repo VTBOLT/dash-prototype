@@ -76,6 +76,12 @@ function doubleClicked() {
   timeoutID = null;
 }
 
+// Calls fault.js
+function fault_state(event) {
+  var key = event.key;
+  changeFault(key)
+} 
+
 // Continuous loop writing new values to the screen
 function write_data() {    
   // update other things less often
@@ -97,7 +103,7 @@ function write_data() {
     minCellTemp.textContent = curr_mincelltemp.toString().substring(0, 6);
     b.set(curr_soc);
     socText.textContent = "SOC: " + curr_soc.toString().substring(0, 4);
-  }
+  }   
   
   // soc overflow
   if (curr_soc <= 0) {

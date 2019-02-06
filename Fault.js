@@ -1,8 +1,6 @@
-var body = document.getElementById('body');
-var text = document.getElementById('rpm');
-
-function changeFault(event) {
-    var key = event.key;
+function changeFault(key) {
+    var body = document.getElementById('body');
+    var text = document.getElementById('rpm');
     if (key == "h") {
         body.style.backgroundColor = "red";
         text.style.color = "black";
@@ -16,5 +14,4 @@ function changeFault(event) {
         body.style.backgroundColor = "white";
         text.style.color = "black";
     }
-    
   }
