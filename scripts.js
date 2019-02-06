@@ -76,7 +76,7 @@ function doubleClicked() {
   timeoutID = null;
 }
 
-// Calls fault.js
+// Calls Fault.js and changes fault state depending on keypress
 function fault_state(event) {
   var key = event.key;
   changeFault(key)
