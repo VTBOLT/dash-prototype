@@ -1,0 +1,43 @@
+@font-face {
+    font-family: 'digital-7';
+    src: url('digital-7.ttf');
+}
+
+td {
+    padding: 4px;
+    text-align: center;
+    box-shadow: 5px 5px 2px grey;
+}
+
+tr:nth-child(even) {
+    background-color: #e5eefdb4;
+}
+
+tr:nth-child(odd) {
+    background-color: #ebebebb4;
+}
+
+.tempval {
+    font-family: 'digital-7';
+    font-size: 30px;
+    width: 85px;
+}
+
+#temps {
+    float: right;
+    text-align: right;
+    font-family: 'tahoma';
+    font-size: 12px;
+}
+
+#unhidetemps {
+    font-family: 'tahoma';
+    font-size: 12px;
+    box-shadow: 5px 5px 2px grey;
+    padding: 10px;
+    background-color: #ebebebb4;
+}
+
+#notTemps {
+    float: left;
+}

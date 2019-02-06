@@ -1,0 +1,58 @@
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 12.5%; /* Location of the box */
+    top: 12.5%;
+    width: 75%; /* Size of the Box */
+    height: 75%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: #cdcdcd; /* Light grey */
+}
+/* The Close Button */
+.close {
+    display: flex;
+    background-color: #B53737;
+    border: 1px solid #d3d3d3;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-weight: bold;
+    line-height: 40px;
+}
+.close > div {
+    flex: 1 0 2px;
+    color: #ffffff;
+    font-family: calibri;
+    font-size: 2vw;           
+    text-align: center;
+    line-height: 20px;
+    margin: 5px auto;
+}
+/* Flexbox Container*/
+.flex-container {
+    display: flex;
+    height: 37.5%;
+  }
+/* Flexbox Boxes*/
+.flex-container > div {
+    flex: 1 0 2px;
+    background: #ff6d19;
+    text-align: center;
+    line-height: 0px;
+    margin: 0.5% 0.5%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(238, 209, 209, 0.19);
+    font-family: 'Roboto', sans-serif;
+}
+/* Parameters */
+h1.param {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5vw; 
+  color: #ffffff;
+}
+/* Numbers */
+p.data {
+  font-family: 'Roboto', sans-serif;
+  font-size: 8vw; 
+  color: #ffffff;
+  margin-top: 6vw; /* controls how far the numbers lie below the heading */
+}
