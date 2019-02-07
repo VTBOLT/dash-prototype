@@ -96,14 +96,7 @@ tr:nth-child(odd) {
 }
 
 #notTemps {
-    
-}
-
-#container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
+    float: center;
 }
 
 #error {
