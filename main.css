@@ -1,3 +1,9 @@
+/* For reference:
+chicago maroon: 134,31,65   #8b1f41
+burnt orange: 232,119,34    #e87722
+hokie stone: 117, 120, 123  #75787b
+*/
+
 @font-face {
     font-family: 'digital-7';
     src: url('digital-7.ttf');
@@ -6,15 +12,20 @@
 td {
     padding: 4px;
     text-align: center;
-    box-shadow: 5px 5px 2px grey;
+    box-shadow: 3px 3px 2px grey;
+    border-radius: 7px;
 }
 
 tr:nth-child(even) {
     background-color: #e5eefdb4;
+    /* chicago maroon?
+    background-color: rgba(134, 31, 65, 0.5); */
 }
 
 tr:nth-child(odd) {
     background-color: #ebebebb4;
+    /* burnt orange? 
+    background-color: rgba(232, 119, 34, 0.5); */
 }
 
 .tempval {
@@ -23,19 +34,65 @@ tr:nth-child(odd) {
     width: 85px;
 }
 
+#logo {
+    width: 200px;
+    height: 84px;
+    position: fixed;
+    right: 8px;
+    top: 202px;
+    opacity: 0.8;
+}
+
+#socBG {
+    width: 120px;
+    height: 330px;
+    position: fixed;
+    top: -4px;
+    right: 208px;
+    z-index: 1;
+}
+
+#socBG rect {
+    width: 59px;
+    height: 243px;
+    fill: none;
+}
+
+#soc svg {
+    /* filter: drop-shadow(-10px 10px 3px rgb(104, 104, 104)); */
+    transform-origin: 150px 100px;
+    transform: rotate(-90deg);
+}
+
+#soc {
+    float: right;
+    position: fixed;
+    /* Awkward numbers bc of the rotation */
+    top: 4px;
+    right: 40px;
+}
+
 #temps {
+    position: fixed;
+    top: 8px;
+    right: 10px;
+    float: right;
     text-align: right;
     font-family: 'tahoma';
     font-size: 12px;
+    user-select: none; /* Text doesn't highlight when double clicked/tapped */
 }
 
-#unhidetemps {
+#showTemps {
+    padding: 25px;
+    background-color: #e5eefdb4;
+    position: fixed;
+    top: 0;
+    right: 0;
     font-family: 'tahoma';
     font-size: 12px;
-    box-shadow: 5px 5px 2px grey;
-    padding: 10px;
-    background-color: #ebebebb4;
-    
+    display: none;
+    user-select: none; /* Text doesn't highlight when double clicked/tapped */
 }
 
 #notTemps {

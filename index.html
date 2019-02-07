@@ -6,7 +6,6 @@
     <link rel="stylesheet" type="text/css" href="./Debug.css" />
     <link rel="stylesheet" type="text/css" href="./Fault.css" />
     <link href="./roboto.css" rel="stylesheet">
-    <script type="text/javascript" src="./loading-bar.js"></script>
     <link rel="stylesheet" type="text/css" href="./main.css" />
 </head>
 
@@ -17,20 +16,19 @@
             <h1 id="rpm">
                 RPM: 0
             </h1>
-            <h1 id="error">
-                ERROR
-            </h1>
-            <h1 id="soc">
-                SOC: 0
-            </h1>
-            <div class="ldBar" data-value="0" data-preset="energy"></div>
+            <br>
+
             <!-- Format Space -->
             <br>
             <br>
             <!-- Open The Modal -->
             <div><button id="myBtn">Open Debug Screen</button></div>
         </div> 
-        <!-- Float Right -->               
+        <!-- Float Right -->  
+        <div id="soc"></div><svg id="socBG"><rect x="36" y="17" rx="5px" ry="5px" stroke="black" stroke-width="4px" /></svg>
+        <!-- Just for fun....remove? -->
+        <img id="logo" src="./bolt_logo.png" />
+        
         <div id="temps"> 
             <table id="tempTable">
                 <tr>
@@ -54,7 +52,7 @@
                     <td id="minCellTemp" class="tempval">0</td>
                 </tr>
             </table>
-            <div id="unhidetemps">Temps Hidden</div>
+            <div id="showTemps">Show</div>
         </div>        
     </div>   
     <!-- The Modal -->
@@ -87,7 +85,9 @@
     </div>
 
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
     <script src='http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js'></script>
+    <script src="node_modules/progressbar.js/dist/progressbar.min.js"></script>
 
     <script src="./scripts.js"></script>
     <script src="./Debug.js"></script>

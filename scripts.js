@@ -19,10 +19,10 @@ let motorTemp = document.getElementById("motorTemp");
 let maxMotorTemp = document.getElementById("maxMotorTemp");
 let maxCellTemp = document.getElementById("maxCellTemp");
 let minCellTemp = document.getElementById("minCellTemp");
-let socText = document.getElementById("soc");
+//let soc = document.getElementById("soc");
 let tempTable = document.getElementById("tempTable");
-let unhideTemps = document.getElementById("unhidetemps");
-unhideTemps.style.display = "none";
+let showTemps = document.getElementById("showTemps");
+
 
 // Set initial values for data
 let curr_soc = 92.0;
@@ -34,17 +34,44 @@ let curr_maxcelltemp = 120.0
 let curr_mincelltemp = 102.0
 let counter = 51; // analagous to "temp" on BOLT_3_Dash
 
-//Loading bar object imported from loading-bar.*
-let b1 = document.querySelector(".ldBar");
-let b = new ldBar(b1);
-b.set(curr_soc); // start up soc bar
+// Initialize SOC ProgressBar
+var socBar = new ProgressBar.Line("#soc", {
+  strokeWidth: 23,
+  easing: 'easeInOut',
+  duration: 1000,
+  color: '#3c643c',
+  trail: 'none',
+  svgStyle: {width: '80%', height: '100%'},
+  text: {
+    style: {
+      // text sits directly underneath vertical bar
+      color: '#000000',
+      fontFamily: 'digital-7',
+      fontSize: '38px',
+      position: 'fixed',
+      top: '256px',
+      right: '235px',
+    },
+    autoStyleContainer: false
+  },
+  step: (state, socBar) => {
+    if (socBar.value() > 0.2) {
+      socBar.path.setAttribute('stroke', '#3c643c');
+    } else {
+      socBar.path.setAttribute('stroke', '#ff0000');
+    }
+    // display nearest tenth of a percent
+    socBar.setText((100.0 * socBar.value()).toFixed(1).toString());
+  }
+});
+socBar.animate(1.0);
 
-// Long-press show/hide functionality for temps div
-//DOES NOT WORK YET
+
+// Double tap functionality for temps visibility
 tempTable.addEventListener("click", tempsClickTimer);
-unhideTemps.addEventListener("click", tempsClickTimer);
+showTemps.addEventListener("click", tempsClickTimer);
 tempTable.addEventListener("click", tempsClickCounter);
-unhideTemps.addEventListener("click", tempsClickCounter);
+showTemps.addEventListener("click", tempsClickCounter);
 let taps = 0;
 let timeoutID;
 let maxTime = 500; // have to double click/tap in half a second
@@ -66,10 +93,10 @@ function doubleClicked() {
   if (taps == 2) {
     if (tempTable.style.visibility == "visible") {
       tempTable.style.visibility = "hidden";
-      unhideTemps.style.display = "initial";
+      showTemps.style.display = "initial";
     } else {
       tempTable.style.visibility = "visible";
-      unhideTemps.style.display = "none";
+      showTemps.style.display = "none";
     }
   }
   taps = 0;
@@ -101,9 +128,8 @@ function write_data() {
     motorTemp.textContent = curr_motortemp.toString();
     maxCellTemp.textContent = curr_maxcelltemp.toString().substring(0, 6);
     minCellTemp.textContent = curr_mincelltemp.toString().substring(0, 6);
-    b.set(curr_soc);
-    socText.textContent = "SOC: " + curr_soc.toString().substring(0, 4);
-  }   
+    socBar.animate(curr_soc / 100.0);
+  }
   
   // soc overflow
   if (curr_soc <= 0) {
@@ -113,6 +139,7 @@ function write_data() {
   // rpm overflow
   if (curr_rpm > 8500) {
     curr_rpm = 0;
+
   }
   
   // motor temp overflow
