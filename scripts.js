@@ -133,6 +133,7 @@ function write_data() {
   // rpm overflow
   if (curr_rpm > 8500) {
     curr_rpm = 0;
+
   }
   
   // motor temp overflow
