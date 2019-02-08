@@ -1,6 +1,11 @@
 const { remote } = require('electron');
 const { Menu, MenuItem } = remote;
 
+
+var modal = document.getElementById('myModal')
+var RPM = document.getElementById('rpm')
+
+
 //Get document elements
 var modal = document.getElementById('myModal');
 var close = document.getElementsByClassName("close")[0];
@@ -10,8 +15,9 @@ var menu = Menu.buildFromTemplate([
         submenu: [{
             label:'Open Debug Menu',
             click(){modal.style.display = "block"}},
+
                 {   label:'Close Debug Menu',
-                    click(){modal.style.display = "none"}},]},
+                    click(){modal.style.display = "none"}}]},
     {   label: 'Analyze',
         submenu: [{
             label:'Graph RPM',
@@ -23,10 +29,10 @@ var menu = Menu.buildFromTemplate([
             label:'RPM Gauge',
             submenu:[{
                         label:'show',
-                        click(){dialog.showMessageBox(win,{message:'show RPM'})},},
+                        click(){RPM.style.display = "block"},},
                     {
                         label:'hide',
-                        click(){dialog.showMessageBox(win,{message:'hide RPM'})}}],},
+                        click(){RPM.style.display = "none"}}],},
         {
             label:'SOC Gauge',
             submenu:[{
