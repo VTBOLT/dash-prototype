@@ -96,5 +96,9 @@ tr:nth-child(odd) {
 }
 
 #notTemps {
-    float: left;
+    float: center;
+}
+
+#error {
+    color: white;
 }

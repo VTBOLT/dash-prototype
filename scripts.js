@@ -103,6 +103,12 @@ function doubleClicked() {
   timeoutID = null;
 }
 
+// Calls Fault.js and changes fault state depending on keypress
+function fault_state(event) {
+  var key = event.key;
+  changeFault(key)
+} 
+
 // Continuous loop writing new values to the screen
 function write_data() {    
   // update other things less often

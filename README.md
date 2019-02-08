@@ -26,3 +26,10 @@ open another command prompt and `vagrant ssh`
 run `candump vcan0` in one terminal
 run `./can_sim.sh` in the other terminal
 The candump terminal should receive data
+
+# fault condition testing
+The dash takes keyboard inputs to test different fault conditions.
+* Input lowercase 'h' for a __high__ level error.
+* Input lowercase 'm' for a __medium__ level error.
+* Input lowercase 'l' for a __low__ level error.
+* Input lowercase 'n' to revert back to the original screen with __no__ error.

@@ -4,20 +4,22 @@
 <head>
     <link rel="stylesheet" type="text/css" href="./loading-bar.css" />
     <link rel="stylesheet" type="text/css" href="./Debug.css" />
+    <link rel="stylesheet" type="text/css" href="./Fault.css" />
     <link href="./roboto.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./main.css" />
 </head>
 
-<body>
-    <div>
+<body id="body" onkeydown="fault_state(event)">
+    <div id="container">
         <!-- Float Left -->
         <div id="notTemps">
             <h1 id="rpm">
                 RPM: 0
             </h1>
-            <br>
-
             <!-- Format Space -->
+            <h1 id="error">
+                Error:
+            </h1>        
             <br>
             <br>
             <!-- Open The Modal -->
@@ -90,6 +92,7 @@
 
     <script src="./scripts.js"></script>
     <script src="./Debug.js"></script>
+    <script src="./Fault.js"></script>
 
 </body>
 
