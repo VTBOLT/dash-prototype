@@ -10,6 +10,10 @@
     overflow: auto; /* Enable scroll if needed */
     background-color: #cdcdcd; /* Light grey */
 }
+
+#myBtn {
+  display: none;
+}
 /* The Close Button */
 .close {
     display: flex;
