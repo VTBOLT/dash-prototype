@@ -3,6 +3,7 @@ const { Menu, MenuItem } = remote;
 
 //Get document elements
 var modal = document.getElementById('myModal');
+var close = document.getElementsByClassName("close")[0];
 
 var menu = Menu.buildFromTemplate([
     {   label: 'Debug',
