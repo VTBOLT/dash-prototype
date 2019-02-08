@@ -20,15 +20,6 @@ function createWindow() {
                 click(){dialog.showMessageBox(win,{message:'graph rpm'})}},
                     {   label:'Graph SOC',
                         click(){dialog.showMessageBox(win,{message:'graph soc'})}},]},
-        {   label: 'Temp',
-            click(){dialog.showMessageBox(win,{message:'temp'})}},
-        {   label: 'Settings',
-            submenu: [{ 
-                label:'Open Temp Display',
-                click(){dialog.showMessageBox(win,{message:'open temp'})}},
-                    {  
-                        label:'Close Temp Display',
-                        click(){dialog.showMessageBox(win,{message:'close temp'})}},]},
         {   label: 'Widgets',
             submenu:[{
                 label:'RPM Gauge',
