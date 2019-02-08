@@ -3,10 +3,10 @@
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    left: 12.5%; /* Location of the box */
-    top: 12.5%;
-    width: 75%; /* Size of the Box */
-    height: 75%;
+    left: 0%; /* Location of the box */
+    top: 0%;
+    width: 100%; /* Size of the Box */
+    height: 100%;
     overflow: auto; /* Enable scroll if needed */
     background-color: #cdcdcd; /* Light grey */
 }

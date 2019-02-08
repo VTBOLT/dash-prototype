@@ -1,13 +1,16 @@
 const { remote } = require('electron');
 const { Menu, MenuItem } = remote;
 
+//Get document elements
+var modal = document.getElementById('myModal');
+
 var menu = Menu.buildFromTemplate([
     {   label: 'Debug',
         submenu: [{
             label:'Open Debug Menu',
-            click(){dialog.showMessageBox(win,{message:'open debug'})}},
+            click(){modal.style.display = "block"}},
                 {   label:'Close Debug Menu',
-                    click(){dialog.showMessageBox(win,{message:'close debug'})}},]},
+                    click(){modal.style.display = "none"}},]},
     {   label: 'Analyze',
         submenu: [{
             label:'Graph RPM',
