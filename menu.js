@@ -27,10 +27,12 @@ var menu = Menu.buildFromTemplate([
             label:'SOC Gauge',
             submenu:[{
                         label:'show',
-                        click(){dialog.showMessageBox(win,{message:'show SOC'})},},
+                        click(){document.getElementById("soc").style.display="block";
+                                document.getElementById("socBG").style.display="block"},},
                     {
                         label:'hide',
-                        click(){dialog.showMessageBox(win,{message:'hide SOC'})}}],},
+                        click(){document.getElementById("soc").style.display="none";
+                                document.getElementById("socBG").style.display="none"}}],},
         {  
             label:'Speedometer',
             submenu:[{
@@ -43,10 +45,10 @@ var menu = Menu.buildFromTemplate([
             label:'Temp Gauge',
             submenu:[{
                         label:'show',
-                        click(){dialog.showMessageBox(win,{message:'show temp'})},},
+                        click(){document.getElementById("temps").style.display="block"},},
                     {
                         label:'hide',
-                        click(){dialog.showMessageBox(win,{message:'hide Temp'})}}],},
+                        click(){document.getElementById("temps").style.display="none"}}],},
         {
             label:'Timer',
             submenu:[{
