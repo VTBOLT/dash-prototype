@@ -107,7 +107,7 @@ function doubleClicked() {
 function write_data() {    
   // update other things less often
   if (counter > 50) {
-    curr_soc -= 0.1;
+    curr_soc -= 1.1;
     curr_maxmctemp += 0.01;
     curr_motortemp += 1.0;
     curr_maxcelltemp += 0.01;
