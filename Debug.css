@@ -50,13 +50,21 @@
 /* Parameters */
 h1.param {
   font-family: 'Roboto', sans-serif;
-  font-size: 1.5vw; 
+  font-size: 2vw; 
   color: #ffffff;
+}
+
+/* Parameters (3rd row) */
+h1.param2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 3.1vw; 
+  color: #ffffff;
+  margin-top: 4.5vw; /* controls how far the text lie below the heading */
 }
 /* Numbers */
 p.data {
   font-family: 'Roboto', sans-serif;
-  font-size: 8vw; 
+  font-size: 9vw; 
   color: #ffffff;
-  margin-top: 6vw; /* controls how far the numbers lie below the heading */
+  margin-top: 9vw; /* controls how far the numbers lie below the heading */
 }
