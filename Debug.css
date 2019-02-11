@@ -3,12 +3,16 @@
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    left: 12.5%; /* Location of the box */
-    top: 12.5%;
-    width: 75%; /* Size of the Box */
-    height: 75%;
+    left: 0%; /* Location of the box */
+    top: 0%;
+    width: 100%; /* Size of the Box */
+    height: 100%;
     overflow: auto; /* Enable scroll if needed */
     background-color: #cdcdcd; /* Light grey */
+}
+
+#myBtn {
+  display: none;
 }
 /* The Close Button */
 .close {
@@ -44,15 +48,23 @@
     font-family: 'Roboto', sans-serif;
 }
 /* Parameters */
-h1.param {
+h1.main_param {
   font-family: 'Roboto', sans-serif;
-  font-size: 1.5vw; 
+  font-size: 2vw; 
   color: #ffffff;
+}
+
+/* Parameters (3rd row) */
+h1.sub_param {
+  font-family: 'Roboto', sans-serif;
+  font-size: 3.1vw; 
+  color: #ffffff;
+  margin-top: 4.5vw; /* controls how far the text lie below the heading */
 }
 /* Numbers */
 p.data {
   font-family: 'Roboto', sans-serif;
-  font-size: 8vw; 
+  font-size: 9vw; 
   color: #ffffff;
-  margin-top: 6vw; /* controls how far the numbers lie below the heading */
+  margin-top: 9vw; /* controls how far the numbers lie below the heading */
 }
