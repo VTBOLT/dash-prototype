@@ -48,14 +48,14 @@
     font-family: 'Roboto', sans-serif;
 }
 /* Parameters */
-h1.param {
+h1.main_param {
   font-family: 'Roboto', sans-serif;
   font-size: 2vw; 
   color: #ffffff;
 }
 
 /* Parameters (3rd row) */
-h1.param2 {
+h1.sub_param {
   font-family: 'Roboto', sans-serif;
   font-size: 3.1vw; 
   color: #ffffff;
