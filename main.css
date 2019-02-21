@@ -68,6 +68,14 @@ tr:nth-child(odd) {
     fill: none;
 }
 
+#rpmGauge svg {
+    position: fixed;
+    left: -30px;
+    top: 40px;
+    width: 800px;
+    height: 400px;
+}
+
 #soc svg {
     /* filter: drop-shadow(-10px 10px 3px rgb(104, 104, 104)); */
     transform-origin: 150px 100px;

@@ -22,6 +22,7 @@ let minCellTemp = document.getElementById("minCellTemp");
 //let soc = document.getElementById("soc");
 let tempTable = document.getElementById("tempTable");
 let showTemps = document.getElementById("showTemps");
+let rpmPath = document.getElementById("rpmPath");
 
 
 // Set initial values for data
@@ -34,8 +35,21 @@ let curr_maxcelltemp = 120.0
 let curr_mincelltemp = 102.0
 let counter = 51; // analagous to "temp" on BOLT_3_Dash
 
+// Initialize RPM ProgressBar
+let rpmBar = new ProgressBar.Path(rpmPath, {
+  easing: 'easeInOut',
+  duration: 1400,
+  from: { strokeWidth: 1},
+  to: { strokeWidth: 100},
+  trailColor: '#ebebebb4',
+  trailWidth: 4
+});
+
+rpmBar.set(0);
+rpmBar.animate(1);
+
 // Initialize SOC ProgressBar
-var socBar = new ProgressBar.Line("#soc", {
+let socBar = new ProgressBar.Line("#soc", {
   strokeWidth: 24,
   easing: 'easeInOut',
   duration: 1000,
