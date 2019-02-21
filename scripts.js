@@ -49,8 +49,8 @@ var socBar = new ProgressBar.Line("#soc", {
       fontFamily: 'digital-7',
       fontSize: '38px',
       position: 'fixed',
-      top: '256px',
-      right: '235px',
+      top: '380px',
+      right: '307px',
     },
     autoStyleContainer: false
   },
@@ -148,7 +148,7 @@ function write_data() {
   }
 
   // update rpm every pass
-  rpm.textContent = "RPM: " + curr_rpm.toString();
+  rpm.textContent = curr_rpm.toString();
   curr_rpm += 100;
   counter++;
   

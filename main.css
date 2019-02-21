@@ -38,17 +38,25 @@ tr:nth-child(odd) {
     width: 200px;
     height: 84px;
     position: fixed;
-    right: 8px;
-    top: 202px;
+    left: 8px;
+    bottom: 15px;
     opacity: 0.8;
+}
+
+#rpm {
+    font-family: 'digital-7';
+    font-size: 75px;
+    position: fixed;
+    top: 80px;
+    left: 195px;
 }
 
 #socBG {
     width: 120px;
     height: 330px;
     position: fixed;
-    top: -4px;
-    right: 208px;
+    bottom: -25px;
+    right: 283px;
     z-index: 1;
 }
 
@@ -68,26 +76,27 @@ tr:nth-child(odd) {
     float: right;
     position: fixed;
     /* Awkward numbers bc of the rotation */
-    top: 4px;
-    right: 40px;
+    bottom: 235px;
+    right: 115px;
 }
 
 #temps {
     position: fixed;
-    top: 8px;
+    bottom: 10px;
     right: 10px;
     float: right;
     text-align: right;
     font-family: 'tahoma';
     font-size: 12px;
     user-select: none; /* Text doesn't highlight when double clicked/tapped */
+    zoom: 142%;
 }
 
 #showTemps {
     padding: 25px;
     background-color: #e5eefdb4;
     position: fixed;
-    top: 0;
+    bottom: 0;
     right: 0;
     font-family: 'tahoma';
     font-size: 12px;
