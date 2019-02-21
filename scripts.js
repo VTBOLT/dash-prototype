@@ -36,7 +36,7 @@ let counter = 51; // analagous to "temp" on BOLT_3_Dash
 
 // Initialize SOC ProgressBar
 var socBar = new ProgressBar.Line("#soc", {
-  strokeWidth: 23,
+  strokeWidth: 24,
   easing: 'easeInOut',
   duration: 1000,
   color: '#3c643c',
@@ -50,7 +50,7 @@ var socBar = new ProgressBar.Line("#soc", {
       fontSize: '38px',
       position: 'fixed',
       top: '380px',
-      right: '307px',
+      right: '280px',
     },
     autoStyleContainer: false
   },
@@ -137,8 +137,8 @@ function write_data() {
   }
 
   // rpm overflow
-  if (curr_rpm > 8500) {
-    curr_rpm = 0;
+  if (curr_rpm > 12000) {
+    curr_rpm = 200;
 
   }
   

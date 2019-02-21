@@ -41,6 +41,7 @@ tr:nth-child(odd) {
     left: 8px;
     bottom: 15px;
     opacity: 0.8;
+    zoom: 80%;
 }
 
 #rpm {
@@ -48,16 +49,17 @@ tr:nth-child(odd) {
     font-size: 75px;
     position: fixed;
     top: 80px;
-    left: 195px;
+    left: 245px;
 }
 
 #socBG {
     width: 120px;
     height: 330px;
     position: fixed;
-    bottom: -25px;
-    right: 283px;
+    bottom: -20px;
+    right: 295px;
     z-index: 1;
+    zoom: 89%;
 }
 
 #socBG rect {
@@ -70,14 +72,15 @@ tr:nth-child(odd) {
     /* filter: drop-shadow(-10px 10px 3px rgb(104, 104, 104)); */
     transform-origin: 150px 100px;
     transform: rotate(-90deg);
+    zoom: 90%;
 }
 
 #soc {
     float: right;
     position: fixed;
     /* Awkward numbers bc of the rotation */
-    bottom: 235px;
-    right: 115px;
+    bottom: 215px;
+    right: 112px;
 }
 
 #temps {
@@ -89,7 +92,7 @@ tr:nth-child(odd) {
     font-family: 'tahoma';
     font-size: 12px;
     user-select: none; /* Text doesn't highlight when double clicked/tapped */
-    zoom: 142%;
+    zoom: 130%;
 }
 
 #showTemps {
