@@ -4,6 +4,10 @@ burnt orange: 232,119,34    #e87722
 hokie stone: 117, 120, 123  #75787b
 */
 
+* {
+    user-select: none; /* Text doesn't highlight when double clicked/tapped */
+}
+
 @font-face {
     font-family: 'digital-7';
     src: url('digital-7.ttf');
@@ -48,8 +52,8 @@ tr:nth-child(odd) {
     font-family: 'digital-7';
     font-size: 75px;
     position: fixed;
-    top: 80px;
-    left: 245px;
+    top: 110px;
+    left: 220px;
 }
 
 #socBG {
@@ -71,7 +75,7 @@ tr:nth-child(odd) {
 #rpmGauge svg {
     position: fixed;
     left: -30px;
-    top: 40px;
+    top: 50px;
     width: 800px;
     height: 400px;
 }
@@ -99,7 +103,6 @@ tr:nth-child(odd) {
     text-align: right;
     font-family: 'tahoma';
     font-size: 12px;
-    user-select: none; /* Text doesn't highlight when double clicked/tapped */
     zoom: 130%;
 }
 
@@ -121,4 +124,21 @@ tr:nth-child(odd) {
 
 #error {
     color: white;
+}
+
+#rpmGauge p {
+    font-family: 'Tahoma';
+    font-size: 16px;
+    position: fixed;
+}
+
+#maxRPM {
+    top: 20px;
+    left: 708px;
+}
+
+#zeroRPM {
+
+    top: 250px;
+    left: 20px;
 }

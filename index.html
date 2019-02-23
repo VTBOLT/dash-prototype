@@ -15,19 +15,30 @@
         <div id="notTemps">
             <div id="rpmGauge">
                 <svg x="0px" y="0px" viewBox="0 0 800 480">
-                    <path id="rpmPath"
+                  <path id="rpmTrail"
+                  fill-opacity="0"
+                  stroke-width="75" 
+                  stroke="#ebebebb4"
+                  d="M 30 300 L 100 150 Q 150 50 250 50 L 840 50"
+                  /> 
+                  <path id="rpmPath"
                     fill-opacity="0" 
                     stroke="#ff8100"
-                    stroke-width="50"
+                    stroke-width="75"
                     d="M 30 300 L 100 150 Q 150 50 250 50 L 840 50"
-                    />
-<!--                     <path id="rpmTrail"
+                  />
+                  <path id="rpmBorder" 
                     fill-opacity="0"
-                    stroke-width="2" 
-                    stroke="#ebebebb4"
-                    d="M 30 300 L 100 150 Q 150 50 250 50 L 840 50"
-                    /> -->
+                    stroke="#000"
+                    stroke-width="5"
+                    d="M 234 12 L 830 12 Q 840 12 840 22 L 840 78 Q 
+                    840 88 830 88 L 250 88 Q 163 88 126 180 L 67 310 
+                    M 234 12 Q 137 12 77 118 L -1 274 Q -5 283 4 287 
+                    L 56 313 Q 64 316 67 310";
+                  />
                 </svg>
+                <p id="zeroRPM">0</p>
+                <p id="maxRPM">12,000</p>
             </div>
             <p id="rpm">
                 0

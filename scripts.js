@@ -38,15 +38,10 @@ let counter = 51; // analagous to "temp" on BOLT_3_Dash
 // Initialize RPM ProgressBar
 let rpmBar = new ProgressBar.Path(rpmPath, {
   easing: 'easeInOut',
-  duration: 1400,
-  from: { strokeWidth: 1},
-  to: { strokeWidth: 100},
-  trailColor: '#ebebebb4',
-  trailWidth: 4
+  duration: 50,
 });
 
-rpmBar.set(0);
-rpmBar.animate(1);
+rpmBar.set(1);
 
 // Initialize SOC ProgressBar
 let socBar = new ProgressBar.Line("#soc", {
@@ -162,6 +157,7 @@ function write_data() {
   }
 
   // update rpm every pass
+  rpmBar.set(curr_rpm / 12000.0);
   rpm.textContent = curr_rpm.toString();
   curr_rpm += 100;
   counter++;
