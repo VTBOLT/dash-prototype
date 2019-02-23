@@ -4,6 +4,7 @@ const { Menu, MenuItem } = remote;
 
 var modal = document.getElementById('myModal')
 var RPM = document.getElementById('rpm')
+let rpmGauge = document.getElementById("rpmGauge");
 
 
 //Get document elements
@@ -29,10 +30,12 @@ var menu = Menu.buildFromTemplate([
             label:'RPM Gauge',
             submenu:[{
                         label:'show',
-                        click(){RPM.style.display = "block"},},
+                        click(){RPM.style.display = "block";
+                                rpmGauge.style.display = "block";},},
                     {
                         label:'hide',
-                        click(){RPM.style.display = "none"}}],},
+                        click(){RPM.style.display = "none";
+                                rpmGauge.style.display = "none";}}],},
         {
             label:'SOC Gauge',
             submenu:[{
