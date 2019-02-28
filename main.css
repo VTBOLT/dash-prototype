@@ -50,10 +50,10 @@ tr:nth-child(odd) {
 
 #rpm {
     font-family: 'digital-7';
-    font-size: 75px;
+    font-size: 120px;
     position: fixed;
-    top: 110px;
-    left: 220px;
+    top: 50px;
+    left: 180px;
 }
 
 #socBG {
