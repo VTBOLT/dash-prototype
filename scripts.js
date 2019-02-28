@@ -161,6 +161,7 @@ function write_data() {
 
   // update rpm every pass
   //rpmBar.set(curr_rpm / 12000.0);
+  //curr_rpm = 1000; // FOR LOCATING TICK MARKS - REMOVE
   if (curr_rpm < RPM_45MPH) {
     // bar should be 1/3 full at 45 mph
     rpmBar.set((1.0/3.0) * (curr_rpm / RPM_45MPH));
