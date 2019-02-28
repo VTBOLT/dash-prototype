@@ -35,6 +35,9 @@ let curr_maxcelltemp = 120.0
 let curr_mincelltemp = 102.0
 let counter = 51; // analagous to "temp" on BOLT_3_Dash
 
+let RPM_45MPH = 2358.0;
+let MAX_RPM = 12000.0;
+
 // Initialize RPM ProgressBar
 let rpmBar = new ProgressBar.Path(rpmPath, {
   easing: 'easeInOut',
@@ -157,7 +160,13 @@ function write_data() {
   }
 
   // update rpm every pass
-  rpmBar.set(curr_rpm / 12000.0);
+  //rpmBar.set(curr_rpm / 12000.0);
+  if (curr_rpm < RPM_45MPH) {
+    // bar should be 1/3 full at 45 mph
+    rpmBar.set((1.0/3.0) * (curr_rpm / RPM_45MPH));
+  } else {
+    rpmBar.set((1.0/3.0) + ((2.0 / 3.0) * (curr_rpm - RPM_45MPH) / (MAX_RPM - RPM_45MPH)));
+  }
   rpm.textContent = curr_rpm.toString();
   curr_rpm += 100;
   counter++;
