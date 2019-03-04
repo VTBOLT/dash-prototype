@@ -20,18 +20,18 @@ body {
 td {
     padding: 4px;
     text-align: center;
-    box-shadow: 3px 3px 2px #75787b;
+    box-shadow: 2px 2px 1px #75787b;
     border-radius: 7px;
 }
 
 tr:nth-child(even) {
-    background-color: #e5eefdb4;
+    background-color: #ebebeb94;
     /* chicago maroon?
     background-color: rgba(134, 31, 65, 0.5); */
 }
 
 tr:nth-child(odd) {
-    background-color: #ebebeb94;
+    background-color: #24407059;
     /* burnt orange? 
     background-color: rgba(232, 119, 34, 0.5); */
 }

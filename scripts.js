@@ -68,7 +68,7 @@ let socBar = new ProgressBar.Line("#soc", {
   },
   step: (state, socBar) => {
     if (socBar.value() > 0.2) {
-      socBar.path.setAttribute('stroke', '#3c643c');
+      socBar.path.setAttribute('stroke', '#2e4d2e');
     } else {
       socBar.path.setAttribute('stroke', '#ff0000');
     }
