@@ -80,10 +80,12 @@ socBar.animate(1.0);
 
 
 // Double tap functionality for temps visibility
-tempTable.addEventListener("click", tempsClickTimer);
-showTemps.addEventListener("click", tempsClickTimer);
-tempTable.addEventListener("click", tempsClickCounter);
-showTemps.addEventListener("click", tempsClickCounter);
+if (process.env.dev) {
+  tempTable.addEventListener("click", tempsClickTimer);
+  showTemps.addEventListener("click", tempsClickTimer);
+  tempTable.addEventListener("click", tempsClickCounter);
+  showTemps.addEventListener("click", tempsClickCounter);
+}
 let taps = 0;
 let timeoutID;
 let maxTime = 500; // have to double click/tap in half a second
