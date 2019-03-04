@@ -8,20 +8,23 @@ function changeFault(key) {
         text.style.color = "white";
         text2.style.color = "white";
         text3.style.color = "yellow";
+        text3.style.display = "block";
     }else if (key == "m") {
         body.style.backgroundColor = "#ffff99"; //yellow
         text.style.color = "black";
         text2.style.color = "black";
         text3.style.color = "red";
+        text3.style.display = "block";
     }else if (key == "l") {
         body.style.backgroundColor = "#ADD8E6"; //blue
         text.style.color = "black";
         text2.style.color = "black";
         text3.style.color = "red";
+        text3.style.display = "block";
     }else if (key == "n") {
-        body.style.backgroundColor = "white";  //white
+        body.style.backgroundColor = "#ebebeb6c";  //very light grey
         text.style.color = "black";
         text2.style.color = "black";
-        text3.style.color = "white";
+        text3.style.display = "none";
     }
   }

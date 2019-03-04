@@ -13,10 +13,14 @@ hokie stone: 117, 120, 123  #75787b
     src: url('digital-7.ttf');
 }
 
+body {
+    background-color: #ebebeb6c;
+}
+
 td {
     padding: 4px;
     text-align: center;
-    box-shadow: 3px 3px 2px grey;
+    box-shadow: 3px 3px 2px #75787b;
     border-radius: 7px;
 }
 
@@ -27,7 +31,7 @@ tr:nth-child(even) {
 }
 
 tr:nth-child(odd) {
-    background-color: #ebebebb4;
+    background-color: #ebebeb94;
     /* burnt orange? 
     background-color: rgba(232, 119, 34, 0.5); */
 }
