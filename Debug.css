@@ -42,7 +42,7 @@
     flex: 1 0 2px;
     background: #ff6d19;
     text-align: center;
-    line-height: 0px;
+    /* line-height: 0px; */
     margin: 0.5% 0.5%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(238, 209, 209, 0.19);
     font-family: 'Roboto', sans-serif;
@@ -50,21 +50,21 @@
 /* Parameters */
 h1.main_param {
   font-family: 'Roboto', sans-serif;
-  font-size: 2vw; 
+  font-size: 3vw; 
   color: #ffffff;
 }
 
 /* Parameters (3rd row) */
 h1.sub_param {
   font-family: 'Roboto', sans-serif;
-  font-size: 3.1vw; 
+  font-size: 4vw; 
   color: #ffffff;
   margin-top: 4.5vw; /* controls how far the text lie below the heading */
 }
 /* Numbers */
 p.data {
   font-family: 'Roboto', sans-serif;
-  font-size: 9vw; 
+  font-size: 6vw; 
   color: #ffffff;
-  margin-top: 9vw; /* controls how far the numbers lie below the heading */
+  margin-top: 2vw; /* controls how far the numbers lie below the heading */
 }

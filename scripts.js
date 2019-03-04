@@ -166,7 +166,7 @@ function write_data() {
     socBar.animate(curr_soc / 100.0);
 
     // Set debug elements
-    debugsoc.textContent = curr_soc.toString().substring(0, 3);
+    debugsoc.textContent = curr_soc.toString().substring(0, 4);
     debughcelltemp.textContent = curr_maxcelltemp.toString().substring(0, 6);
     debuglcelltemp.textContent = curr_mincelltemp.toString().substring(0, 6);
     debugmotortemp.textContent = curr_motortemp.toString();
@@ -201,7 +201,7 @@ function write_data() {
   // debug rpm and mph
   debugrpm.textContent = curr_rpm.toString();
 
-  debugmph.textContent = rpmToMph(curr_rpm).toString().substring(0, 3);
+  debugmph.textContent = Math.round(rpmToMph(curr_rpm)).toString();
 
   curr_rpm += 100;
   counter++;
