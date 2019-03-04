@@ -112,7 +112,7 @@ tr:nth-child(odd) {
 
 #showTemps {
     padding: 25px;
-    background-color: #e5eefdb4;
+    /* background-color: #e5eefdb4; */
     position: fixed;
     bottom: 0;
     right: 0;
@@ -120,6 +120,16 @@ tr:nth-child(odd) {
     font-size: 12px;
     display: none;
     user-select: none; /* Text doesn't highlight when double clicked/tapped */
+}
+
+#showSOC {
+    padding: 50px;
+    position: fixed;
+    /* border: 2px solid black; */
+    bottom: 0;
+    right: 260px;
+    display: none;
+    user-select: none;
 }
 
 #notTemps {

@@ -19,10 +19,12 @@ let motorTemp = document.getElementById("motorTemp");
 let maxMotorTemp = document.getElementById("maxMotorTemp");
 let maxCellTemp = document.getElementById("maxCellTemp");
 let minCellTemp = document.getElementById("minCellTemp");
-//let soc = document.getElementById("soc");
+let soc = document.getElementById("soc");
 let tempTable = document.getElementById("tempTable");
 let showTemps = document.getElementById("showTemps");
 let rpmPath = document.getElementById("rpmPath");
+let showSOC = document.getElementById("showSOC");
+let socBG = document.getElementById("socBG");
 
 
 // Set initial values for data
@@ -79,14 +81,49 @@ let socBar = new ProgressBar.Line("#soc", {
 socBar.animate(1.0);
 
 
-// Double tap functionality for temps visibility
-tempTable.addEventListener("click", tempsClickTimer);
-showTemps.addEventListener("click", tempsClickTimer);
-tempTable.addEventListener("click", tempsClickCounter);
-showTemps.addEventListener("click", tempsClickCounter);
+//////////////////////////////////////////////////////////////////////
+///////////////// BEGIN DOUBLE TAP SHOW/HIDE FUNCTIONS ///////////////
+//////////////////////////////////////////////////////////////////////
+
+// Double tap functionality for temps and soc visibility
+if (process.env.dev) {
+  tempTable.addEventListener("click", tempsClickTimer);
+  showTemps.addEventListener("click", tempsClickTimer);
+  tempTable.addEventListener("click", clickCounter);
+  showTemps.addEventListener("click", clickCounter);
+  socBG.addEventListener("click", socClickTimer);
+  socBG.addEventListener("click", clickCounter);
+  showSOC.addEventListener("click", socClickTimer);
+  showSOC.addEventListener("click", clickCounter);
+}
 let taps = 0;
 let timeoutID;
 let maxTime = 500; // have to double click/tap in half a second
+
+// Wait to decide whether to toggle soc visibility
+function socClickTimer() {
+  if (timeoutID == null) {
+    timeoutID = setTimeout(socDoubleClicked, maxTime);
+  }
+}
+
+// Toggles soc visibility
+function socDoubleClicked() {
+  if (taps == 2) {
+    if (soc.style.visibility == "visible") {
+      soc.style.visibility = "hidden";
+      socBG.style.visibility = "hidden";
+      showSOC.style.display = "initial";
+    } else {
+      soc.style.visibility = "visible";
+      socBG.style.visibility = "visible";
+      showSOC.style.display = "none";
+    }
+  }
+
+  taps = 0;
+  timeoutID = null;
+}
 
 // Start waiting to toggle the visibility
 function tempsClickTimer() {
@@ -96,7 +133,7 @@ function tempsClickTimer() {
 }
 
 // Count the mouse clicks
-function tempsClickCounter() {
+function clickCounter() {
   taps += 1;
 }
 
@@ -114,6 +151,11 @@ function doubleClicked() {
   taps = 0;
   timeoutID = null;
 }
+
+//////////////////////////////////////////////////////////////////////
+///////////////// END DOUBLE TAP SHOW/HIDE FUNCTIONS /////////////////
+//////////////////////////////////////////////////////////////////////
+
 
 // Calls Fault.js and changes fault state depending on keypress
 function fault_state(event) {
