@@ -108,7 +108,7 @@ tr:nth-child(odd) {
 
 #showTemps {
     padding: 25px;
-    background-color: #e5eefdb4;
+    /* background-color: #e5eefdb4; */
     position: fixed;
     bottom: 0;
     right: 0;
