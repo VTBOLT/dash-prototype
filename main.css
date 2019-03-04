@@ -118,6 +118,16 @@ tr:nth-child(odd) {
     user-select: none; /* Text doesn't highlight when double clicked/tapped */
 }
 
+#showSOC {
+    padding: 50px;
+    position: fixed;
+    /* border: 2px solid black; */
+    bottom: 0;
+    right: 260px;
+    display: none;
+    user-select: none;
+}
+
 #notTemps {
     float: center;
 }
