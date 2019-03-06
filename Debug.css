@@ -68,3 +68,11 @@ p.data {
   color: #ffffff;
   margin-top: 2vw; /* controls how far the numbers lie below the heading */
 }
+/* Orange padding text to get spacing right */
+.pad {
+  color: #ff6d19;
+  margin-top: -16px;
+  font-size: 3vw;
+  font-family: 'Roboto', sans-serif;
+
+}
