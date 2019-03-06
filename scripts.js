@@ -156,6 +156,7 @@ function write_data() {
     if (curr_motortemp > curr_maxmotortemp) {
       curr_maxmotortemp = curr_motortemp;
       maxMotorTemp.textContent = curr_maxmotortemp.toString();
+      debughmtrtemp.textContent = curr_maxmotortemp.toString();
     }
     counter = 0;
     // Set dash elements

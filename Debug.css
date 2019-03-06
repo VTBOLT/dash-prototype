@@ -57,16 +57,16 @@ h1.main_param {
 /* Parameters (3rd row) */
 h1.sub_param {
   font-family: 'Roboto', sans-serif;
-  font-size: 4vw; 
+  font-size: 6vw; 
   color: #ffffff;
-  margin-top: 4.5vw; /* controls how far the text lie below the heading */
+  margin-top: 3vw; /* controls how far the text lie below the heading */
 }
 /* Numbers */
 p.data {
   font-family: 'Roboto', sans-serif;
-  font-size: 6vw; 
+  font-size: 5.5vw; 
   color: #ffffff;
-  margin-top: 2vw; /* controls how far the numbers lie below the heading */
+  margin-top: 1vw; /* controls how far the numbers lie below the heading */
 }
 /* Orange padding text to get spacing right */
 .pad {
