@@ -1,16 +1,13 @@
-// Had to comment these out, hangs vvvvvvv
-//var can = require("socketcan");
-//var channel = can.createRawChannel("vcan0", true);
-// Had to comment these out, hangs ^^^^^^^
+var can = require("socketcan");
+var channel = can.createRawChannel("vcan0", true);
 
-//var spawn = require("child_process").spawn;
+var spawn = require("child_process").spawn;
 
-/* The command below spawns an instance of CanInterface
-which outputs CAN data 
---------Used for production--------*/
-// processSOC = spawn("./CanInterface", [], {
-//   shell: true
-// });
+// The command below spawns an instance of CanInterface
+// which outputs CAN data 
+processSOC = spawn("./CanInterface", [], {
+  shell: true
+});
 
 // Get JS objects of the HTML elements
 let rpm = document.getElementById("rpm");
@@ -223,54 +220,66 @@ if (process.env.dev) {
   write_data();
 }
 
+//0x 0a2 00001 3 bit address, 5 bit value
 
+let mtrTempAddr = 0xa2;
+let rpmAddr = 0xa5;
+let dclAddr = 0x111;
+let socAddr = 0x183;
+let mcTempsAddr = 0xa0;
+let bmsTempsAddr = 0x181;
+let mcInternalAddr = 0xaa;
+let mcErrorAddr = 0xab;
 
-// channel.addListener("onMessage", function(msg) {
-//   switch (msg["id"]) {
-//     case 0xa0:
-//       moduleA = ((msg["data"][1] << 8) + msg["data"][0]) * 0.1;
-//       moduleB = ((msg["data"][3] << 8) + msg["data"][2]) * 0.1;
-//       moduleC = ((msg["data"][5] << 8) + msg["data"][4]) * 0.1;
-//       gateDrvrBrd = ((msg["data"][7] << 8) + msg["data"][6]) * 0.1;
+channel.addListener("onMessage", function(msg) {
+  switch (msg["id"]) {
+    case mcTempsAddr:
+      // mc temperatures
+      moduleA = ((msg["data"][1] << 8) + msg["data"][0]) * 0.1;
+      moduleB = ((msg["data"][3] << 8) + msg["data"][2]) * 0.1;
+      moduleC = ((msg["data"][5] << 8) + msg["data"][4]) * 0.1;
+      gateDrvrBrd = ((msg["data"][7] << 8) + msg["data"][6]) * 0.1;
 
-//       break;
-//     case 0xa2:
-//       mtrTemp = ((msg["data"][5] << 8) + msg["data"][4]) * 0.1;
+      break;
+    case mtrTempAddr:
+      mtrTemp = ((msg["data"][5] << 8) + msg["data"][4]) * 0.1;
 
-//       break;
-//     case 0xa5:
-//       RPM = (msg["data"][3] << 8) + msg["data"][2];
+      break;
+    case rpmAddr:
+      RPM = (msg["data"][3] << 8) + msg["data"][2];
 
-//       break;
-//     case 0x181:
-//       highCellTemp = ((msg["data"][2] << 8) + msg["data"][1]) * 0.1;
-//       lowCellTemp = ((msg["data"][5] << 8) + msg["data"][4]) * 0.1;
-//       break;
-//     case 0x111:
-//       DCL = (msg["data"][1] << 8) + msg["data"][0];
-//       break;
-//     case 0x183:
-//       SOC = ((msg["data"][5] << 8) + msg["data"][4]) * 0.5;
-//       b.set(SOC);
-//       break;
-//     case 0xaa:
-//       OBVSM_state = (msg["data"][1] << 8) + msg["data"][0];
-//       inverter_state = msg["data"][2];
-//       relay_state = msg["data"][3];
-//       inverter_run_state = msg["data"][4];
-//       inverter_cmd_state = msg["data"][5];
-//       inverter_enable_state = msg["data"][6];
-//       direction_state = msg["data"][7];
-//       break;
-//     case 0xab:
-//       post_lo_fault = (msg["data"][1] << 8) + msg["data"][0];
-//       post_hi_fault = (msg["data"][3] << 8) + msg["data"][2];
-//       run_lo_fault = (msg["data"][5] << 8) + msg["data"][4];
-//       run_hi_fault = (msg["data"][7] << 8) + msg["data"][6];
-//       break;
-//     default:
-//       break;
-//   }
-// });
+      break;
+    case bmsTempsAddr:
+      // bms temps
+      highCellTemp = ((msg["data"][2] << 8) + msg["data"][1]) * 0.1;
+      lowCellTemp = ((msg["data"][5] << 8) + msg["data"][4]) * 0.1;
+      break;
+    case dclAddr:
+      DCL = (msg["data"][1] << 8) + msg["data"][0];
+      break;
+    case socAddr:
+      SOC = ((msg["data"][5] << 8) + msg["data"][4]) * 0.5;
+      break;
+    case mcInternalAddr:
+    // internal state of mc
+      OBVSM_state = (msg["data"][1] << 8) + msg["data"][0];
+      inverter_state = msg["data"][2];
+      relay_state = msg["data"][3];
+      inverter_run_state = msg["data"][4];
+      inverter_cmd_state = msg["data"][5];
+      inverter_enable_state = msg["data"][6];
+      direction_state = msg["data"][7];
+      break;
+    case mcErrorAddr:
+    // motor controller errors
+      post_lo_fault = (msg["data"][1] << 8) + msg["data"][0]; 
+      post_hi_fault = (msg["data"][3] << 8) + msg["data"][2];
+      run_lo_fault = (msg["data"][5] << 8) + msg["data"][4];
+      run_hi_fault = (msg["data"][7] << 8) + msg["data"][6];
+      break;
+    default:
+      break;
+  }
+});
 
-// channel.start();
+channel.start();
