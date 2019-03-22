@@ -12,7 +12,7 @@ function createWindow() {
     // set full screen (matters for the pi)
     // COMMENT THIS OUT IF RUNNING ON YOUR OWN MACHINE
     // OR USE ESCAPE TO TOGGLE BACK TO WINDOWED
-    win.setFullScreen(true);
+    //win.setFullScreen(true);
     // and load the index.html of the app.
     win.loadFile("index.html");
 }
