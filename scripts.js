@@ -133,8 +133,7 @@ let curr_maxcelltemp = 120.0
 let curr_mincelltemp = 102.0
 let counter = 51; // analagous to "temp" on BOLT_3_Dash
 
-// Some constants
-let RPM_45MPH = 2358.0;
+let RPM_PACE = 4700.0;
 let MAX_RPM = 12000.0;
 let INCH_TO_MILE = 60.0 / 63360.0;
 let PI = 3.14159265358979;
@@ -319,11 +318,11 @@ function write_data() {
   // update rpm every pass
   //rpmBar.set(curr_rpm / 12000.0);
   //curr_rpm = 1000; // FOR LOCATING TICK MARKS - REMOVE
-  if (curr_rpm < RPM_45MPH) {
-    // bar should be 1/3 full at 45 mph
-    rpmBar.set((1.0/3.0) * (curr_rpm / RPM_45MPH));
+  if (curr_rpm < RPM_PACE) {
+    // 4k now appears where 2k used to be
+    rpmBar.set((1.0/3.0) * (curr_rpm / RPM_PACE));
   } else {
-    rpmBar.set((1.0/3.0) + ((2.0 / 3.0) * (curr_rpm - RPM_45MPH) / (MAX_RPM - RPM_45MPH)));
+    rpmBar.set((1.0/3.0) + ((2.0 / 3.0) * (curr_rpm - RPM_PACE) / (MAX_RPM - RPM_PACE)));
   }
   rpm.textContent = curr_rpm.toString();
   // debug rpm and mph
