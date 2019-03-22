@@ -12,6 +12,21 @@ which outputs CAN data
 //   shell: true
 // });
 
+// listener to toggle fullscreen with the escape key
+// this makes the toggling work....but with F11, not
+// the escape key...?????
+const { remote } = require('electron');
+const { BrowserWindow } = remote;
+document.addEventListener("keypress", event => {
+  if (event.key == "Escape") {
+    if (window.fullscreen) {
+      window.fullscreen = false;
+    } else {
+      window.fullscreen = true;
+    }
+  }
+});
+
 // Get JS objects of the HTML elements
 let rpm = document.getElementById("rpm");
 let maxMCTemp = document.getElementById("maxMCTemp");
