@@ -9,6 +9,7 @@
     height: 100%;
     overflow: auto; /* Enable scroll if needed */
     background-color: #cdcdcd; /* Light grey */
+    zoom: 90%;
 }
 
 #myBtn {
