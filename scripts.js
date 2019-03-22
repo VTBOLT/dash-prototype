@@ -111,10 +111,21 @@ let rpmPath = document.getElementById("rpmPath");
 let showSOC = document.getElementById("showSOC");
 let socBG = document.getElementById("socBG");
 
+// Get JS objects of debug screen elements
+let debugrpm = document.getElementById("debugrpm");
+let debugsoc = document.getElementById("debugsoc");
+let debugmctemp = document.getElementById("debugmctemp");
+let debugmotortemp = document.getElementById("debugmotortemp");
+let debughcelltemp = document.getElementById("debughcelltemp");
+let debuglcelltemp = document.getElementById("debuglcelltemp");
+let debughmtrtemp = document.getElementById("debughmtrtemp");
+let debugdcl = document.getElementById("debugdcl");
+let debugmph = document.getElementById("debugmph");
+let debugdcbus = document.getElementById("debugdcbus");
 
 // Set initial values for data
 let curr_soc = 92.0;
-let curr_rpm = 1000;
+let curr_rpm = 4000;
 let curr_maxmctemp = 98.0;
 let curr_motortemp = 30.0;
 let curr_maxmotortemp = 30.0;
@@ -122,8 +133,13 @@ let curr_maxcelltemp = 120.0
 let curr_mincelltemp = 102.0
 let counter = 51; // analagous to "temp" on BOLT_3_Dash
 
+// Some constants
 let RPM_45MPH = 2358.0;
 let MAX_RPM = 12000.0;
+let INCH_TO_MILE = 60.0 / 63360.0;
+let PI = 3.14159265358979;
+let GEAR_RATIO = 55.0 / 14.0;
+let WHEEL_DIAMETER = 25.66;
 
 // Initialize RPM ProgressBar
 let rpmBar = new ProgressBar.Path(rpmPath, {
@@ -248,6 +264,12 @@ function fault_state(event) {
   changeFault(key)
 } 
 
+// Calculates mph given rpm
+function rpmToMph(rpm) {
+  let mph = INCH_TO_MILE * PI * WHEEL_DIAMETER * rpm * GEAR_RATIO;
+  return mph;
+}
+
 // Continuous loop writing new values to the screen
 function write_data() {    
   // update other things less often
@@ -261,13 +283,21 @@ function write_data() {
     if (curr_motortemp > curr_maxmotortemp) {
       curr_maxmotortemp = curr_motortemp;
       maxMotorTemp.textContent = curr_maxmotortemp.toString();
+      debughmtrtemp.textContent = curr_maxmotortemp.toString();
     }
     counter = 0;
+    // Set dash elements
     maxMCTemp.textContent = curr_maxmctemp.toString().substring(0, 5);
     motorTemp.textContent = curr_motortemp.toString();
     maxCellTemp.textContent = curr_maxcelltemp.toString().substring(0, 6);
     minCellTemp.textContent = curr_mincelltemp.toString().substring(0, 6);
     socBar.animate(curr_soc / 100.0);
+
+    // Set debug elements
+    debugsoc.textContent = curr_soc.toString().substring(0, 4);
+    debughcelltemp.textContent = curr_maxcelltemp.toString().substring(0, 6);
+    debuglcelltemp.textContent = curr_mincelltemp.toString().substring(0, 6);
+    debugmotortemp.textContent = curr_motortemp.toString();
   }
   
   // soc overflow
@@ -296,6 +326,11 @@ function write_data() {
     rpmBar.set((1.0/3.0) + ((2.0 / 3.0) * (curr_rpm - RPM_45MPH) / (MAX_RPM - RPM_45MPH)));
   }
   rpm.textContent = curr_rpm.toString();
+  // debug rpm and mph
+  debugrpm.textContent = curr_rpm.toString();
+
+  debugmph.textContent = Math.round(rpmToMph(curr_rpm)).toString();
+
   curr_rpm += 100;
   counter++;
   
