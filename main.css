@@ -64,7 +64,7 @@ tr:nth-child(odd) {
     width: 120px;
     height: 330px;
     position: fixed;
-    bottom: -20px;
+    bottom: -10px;
     right: 295px;
     z-index: 1;
     zoom: 89%;
@@ -95,13 +95,13 @@ tr:nth-child(odd) {
     float: right;
     position: fixed;
     /* Awkward numbers bc of the rotation */
-    bottom: 215px;
+    bottom: 223px;
     right: 112px;
 }
 
 #temps {
     position: fixed;
-    bottom: 10px;
+    bottom: 20px;
     right: 10px;
     float: right;
     text-align: right;

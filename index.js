@@ -9,6 +9,7 @@ function createWindow() {
         width: 800, 
         height: 480, 
      });
+     
     // set full screen (matters for the pi)
     // COMMENT THIS OUT IF RUNNING ON YOUR OWN MACHINE
     // OR USE ESCAPE TO TOGGLE BACK TO WINDOWED

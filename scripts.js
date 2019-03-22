@@ -148,7 +148,7 @@ let socBar = new ProgressBar.Line("#soc", {
       fontFamily: 'digital-7',
       fontSize: '38px',
       position: 'fixed',
-      top: '380px',
+      top: '370px',
       right: '280px',
     },
     autoStyleContainer: false
@@ -304,7 +304,7 @@ function write_data() {
 
 // Only use test data if "dev" Node env var is present
 // Examples: dev=1 npm start, dev=0 npm start, dev=lsjdkl npm start
-process.env.dev = 1;
+//process.env.dev = 1;
 if (process.env.dev) {
   write_data();
 }
