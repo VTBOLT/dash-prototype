@@ -125,7 +125,7 @@ let debugdcbus = document.getElementById("debugdcbus");
 
 // Set initial values for data
 let curr_soc = 92.0;
-let curr_rpm = 4000;
+let curr_rpm = 1000;
 let curr_maxmctemp = 98.0;
 let curr_motortemp = 30.0;
 let curr_maxmotortemp = 30.0;
@@ -138,7 +138,7 @@ let RPM_45MPH = 2358.0;
 let MAX_RPM = 12000.0;
 let INCH_TO_MILE = 60.0 / 63360.0;
 let PI = 3.14159265358979;
-let GEAR_RATIO = 55.0 / 14.0;
+let GEAR_RATIO = 14.0 / 55.0 ;
 let WHEEL_DIAMETER = 25.66;
 
 // Initialize RPM ProgressBar
