@@ -27,4 +27,7 @@ function changeFault(key) {
         text2.style.color = "black";
         text3.style.display = "none";
     }
+    else if (key == "c") {
+        document.location.replace("stateMachine.html");        
+    }
   }
