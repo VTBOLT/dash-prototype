@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "set dev=1 && electron .",
-    "start": "electron ."
+    "start": "electron .",
+    "run": "set can=1 && electron ."
   },
   "author": "Khang L.",
   "license": "ISC",
@@ -15,6 +16,9 @@
   "dependencies": {
     "argparse": "^1.0.10",
     "argv": "0.0.2",
-    "progressbar.js": "^1.0.1"
+    "nan": "^2.13.2",
+    "progressbar.js": "^1.0.1",
+    "socketcan": "^2.4.0",
+    "xml2js": "^0.4.19"
   }
 }

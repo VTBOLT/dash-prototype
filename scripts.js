@@ -1,17 +1,3 @@
-// Had to comment these out, hangs vvvvvvv
-//var can = require("socketcan");
-//var channel = can.createRawChannel("vcan0", true);
-// Had to comment these out, hangs ^^^^^^^
-
-//var spawn = require("child_process").spawn;
-
-/* The command below spawns an instance of CanInterface
-which outputs CAN data 
---------Used for production--------*/
-// processSOC = spawn("./CanInterface", [], {
-//   shell: true
-// });
-
 const { remote } = require('electron');
 // listener to toggle fullscreen with the escape key
 // this makes the toggling work....but with F11, not
@@ -343,54 +329,73 @@ if (process.env.dev) {
   write_data();
 }
 
+if (process.env.can) {
+  can_test();
+}
 
+function can_test() {
+  // Had to comment these out, hangs vvvvvvv
+  //let can = require("socketcan");
+  rpm.textContent = "yup";
+  //var channel = can.createRawChannel("vcan0", true);
+  // Had to comment these out, hangs ^^^^^^^
 
-// channel.addListener("onMessage", function(msg) {
-//   switch (msg["id"]) {
-//     case 0xa0:
-//       moduleA = ((msg["data"][1] << 8) + msg["data"][0]) * 0.1;
-//       moduleB = ((msg["data"][3] << 8) + msg["data"][2]) * 0.1;
-//       moduleC = ((msg["data"][5] << 8) + msg["data"][4]) * 0.1;
-//       gateDrvrBrd = ((msg["data"][7] << 8) + msg["data"][6]) * 0.1;
+  //var spawn = require("child_process").spawn;
 
-//       break;
-//     case 0xa2:
-//       mtrTemp = ((msg["data"][5] << 8) + msg["data"][4]) * 0.1;
+  /* The command below spawns an instance of CanInterface
+  which outputs CAN data 
+  --------Used for production--------*/
+  // processSOC = spawn("./CanInterface", [], {
+  //   shell: true
+  // });
 
-//       break;
-//     case 0xa5:
-//       RPM = (msg["data"][3] << 8) + msg["data"][2];
+  // channel.addListener("onMessage", function(msg) {
+  //   switch (msg["id"]) {
+  //     case 0xa0:
+  //       moduleA = ((msg["data"][1] << 8) + msg["data"][0]) * 0.1;
+  //       moduleB = ((msg["data"][3] << 8) + msg["data"][2]) * 0.1;
+  //       moduleC = ((msg["data"][5] << 8) + msg["data"][4]) * 0.1;
+  //       gateDrvrBrd = ((msg["data"][7] << 8) + msg["data"][6]) * 0.1;
 
-//       break;
-//     case 0x181:
-//       highCellTemp = ((msg["data"][2] << 8) + msg["data"][1]) * 0.1;
-//       lowCellTemp = ((msg["data"][5] << 8) + msg["data"][4]) * 0.1;
-//       break;
-//     case 0x111:
-//       DCL = (msg["data"][1] << 8) + msg["data"][0];
-//       break;
-//     case 0x183:
-//       SOC = ((msg["data"][5] << 8) + msg["data"][4]) * 0.5;
-//       b.set(SOC);
-//       break;
-//     case 0xaa:
-//       OBVSM_state = (msg["data"][1] << 8) + msg["data"][0];
-//       inverter_state = msg["data"][2];
-//       relay_state = msg["data"][3];
-//       inverter_run_state = msg["data"][4];
-//       inverter_cmd_state = msg["data"][5];
-//       inverter_enable_state = msg["data"][6];
-//       direction_state = msg["data"][7];
-//       break;
-//     case 0xab:
-//       post_lo_fault = (msg["data"][1] << 8) + msg["data"][0];
-//       post_hi_fault = (msg["data"][3] << 8) + msg["data"][2];
-//       run_lo_fault = (msg["data"][5] << 8) + msg["data"][4];
-//       run_hi_fault = (msg["data"][7] << 8) + msg["data"][6];
-//       break;
-//     default:
-//       break;
-//   }
-// });
+  //       break;
+  //     case 0xa2:
+  //       mtrTemp = ((msg["data"][5] << 8) + msg["data"][4]) * 0.1;
 
-// channel.start();
+  //       break;
+  //     case 0xa5:
+  //       RPM = (msg["data"][3] << 8) + msg["data"][2];
+
+  //       break;
+  //     case 0x181:
+  //       highCellTemp = ((msg["data"][2] << 8) + msg["data"][1]) * 0.1;
+  //       lowCellTemp = ((msg["data"][5] << 8) + msg["data"][4]) * 0.1;
+  //       break;
+  //     case 0x111:
+  //       DCL = (msg["data"][1] << 8) + msg["data"][0];
+  //       break;
+  //     case 0x183:
+  //       SOC = ((msg["data"][5] << 8) + msg["data"][4]) * 0.5;
+  //       b.set(SOC);
+  //       break;
+  //     case 0xaa:
+  //       OBVSM_state = (msg["data"][1] << 8) + msg["data"][0];
+  //       inverter_state = msg["data"][2];
+  //       relay_state = msg["data"][3];
+  //       inverter_run_state = msg["data"][4];
+  //       inverter_cmd_state = msg["data"][5];
+  //       inverter_enable_state = msg["data"][6];
+  //       direction_state = msg["data"][7];
+  //       break;
+  //     case 0xab:
+  //       post_lo_fault = (msg["data"][1] << 8) + msg["data"][0];
+  //       post_hi_fault = (msg["data"][3] << 8) + msg["data"][2];
+  //       run_lo_fault = (msg["data"][5] << 8) + msg["data"][4];
+  //       run_hi_fault = (msg["data"][7] << 8) + msg["data"][6];
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // });
+
+  // channel.start();
+}
