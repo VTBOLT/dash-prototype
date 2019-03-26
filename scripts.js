@@ -334,10 +334,21 @@ if (process.env.can) {
 }
 
 function can_test() {
-  // Had to comment these out, hangs vvvvvvv
-  //let can = require("socketcan");
+  // 3 hexdigit address, 5 hexdigit value
+  // set can addresses
+  let mtrTempAddr = 0x0a2;
+  let rpmAddr = 0x0a5;
+  let dclAddr = 0x111;
+  let socAddr = 0x183;
+  let mcTempsAddr = 0x0a0;
+  let bmsTempsAddr = 0x181;
+  let mcInternalAddr = 0x0aa;
+  let mcErrorAddr = 0x0ab;
+
+  let can = require("socketcan");
+  
+  // var channel = can.createRawChannel("vcan0", true);
   rpm.textContent = "yup";
-  //var channel = can.createRawChannel("vcan0", true);
   // Had to comment these out, hangs ^^^^^^^
 
   //var spawn = require("child_process").spawn;
