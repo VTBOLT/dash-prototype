@@ -1,11 +1,9 @@
 // const { remote } = require('electron');
 // const { Menu, MenuItem } = remote;
 
-
 // var modal = document.getElementById('myModal')
 // var RPM = document.getElementById('rpm')
 // let rpmGauge = document.getElementById("rpmGauge");
-
 
 // //Get document elements
 // var modal = document.getElementById('myModal');
@@ -46,7 +44,7 @@
 //                         label:'hide',
 //                         click(){document.getElementById("soc").style.display="none";
 //                                 document.getElementById("socBG").style.display="none"}}],},
-//         {  
+//         {
 //             label:'Speedometer',
 //             submenu:[{
 //                         label:'show',
@@ -54,7 +52,7 @@
 //                     {
 //                         label:'hide',
 //                         click(){dialog.showMessageBox(win,{message:'hide Speed'})}}],},
-//         {            
+//         {
 //             label:'Temp Gauge',
 //             submenu:[{
 //                         label:'show',
@@ -69,7 +67,7 @@
 //                         click(){dialog.showMessageBox(win,{message:'show Time'})},},
 //                     {
 //                         label:'hide',
-//                         click(){dialog.showMessageBox(win,{message:'hide '})}}],}],}  
+//                         click(){dialog.showMessageBox(win,{message:'hide '})}}],}],}
 // ])
 
 // Menu.setApplicationMenu(menu);
