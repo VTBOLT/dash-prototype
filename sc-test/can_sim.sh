@@ -14,13 +14,13 @@ do
     sleep .1
 
     # rpm overflow
-    if [[ $rpm -ge 12000 ]]; 
+    if [ $rpm -ge 12000 ]; 
     then
         rpm=1000
     fi
 
     # send rpm value
-    if [[ $rpm -ge 10000 ]];
+    if [ $rpm -ge 10000 ];
     then
         cansend vcan0 0a5#000$rpm
     else

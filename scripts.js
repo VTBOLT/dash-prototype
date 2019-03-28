@@ -345,14 +345,11 @@ function can_test() {
   let mcInternalAddr = 0x0aa;
   let mcErrorAddr = 0x0ab;
 
-  let can = require("socketcan");
-  
-  // var channel = can.createRawChannel("vcan0", true);
+  let can = require('socketcan');
   rpm.textContent = "yup";
-  // Had to comment these out, hangs ^^^^^^^
-
+  let channel = can.createRawChannel("vcan0", true);
+  
   //var spawn = require("child_process").spawn;
-
   /* The command below spawns an instance of CanInterface
   which outputs CAN data 
   --------Used for production--------*/
@@ -360,53 +357,90 @@ function can_test() {
   //   shell: true
   // });
 
-  // channel.addListener("onMessage", function(msg) {
-  //   switch (msg["id"]) {
-  //     case 0xa0:
-  //       moduleA = ((msg["data"][1] << 8) + msg["data"][0]) * 0.1;
-  //       moduleB = ((msg["data"][3] << 8) + msg["data"][2]) * 0.1;
-  //       moduleC = ((msg["data"][5] << 8) + msg["data"][4]) * 0.1;
-  //       gateDrvrBrd = ((msg["data"][7] << 8) + msg["data"][6]) * 0.1;
+  // declare vars not already at the top of this script
+  let moduleA;
+  let moduleB;
+  let moduleC;
+  let gateDrvrBrd;
+  let dcl;
+  let OBVSM_state;
+  let inverter_state;
+  let relay_state;
+  let inverter_run_state;
+  let inverter_cmd_state;
+  let inverter_enable_state;
+  let direction_state;
+  let post_lo_fault;
+  let post_hi_fault;
+  let run_lo_fault;
+  let run_hi_fault;
 
-  //       break;
-  //     case 0xa2:
-  //       mtrTemp = ((msg["data"][5] << 8) + msg["data"][4]) * 0.1;
+  channel.addListener("onMessage", function(msg) {
+    switch (msg["id"]) {
+      case mcTempsAddr:
+        moduleA = ((msg["data"][1] << 8) + msg["data"][0]) * 0.1;
+        moduleB = ((msg["data"][3] << 8) + msg["data"][2]) * 0.1;
+        moduleC = ((msg["data"][5] << 8) + msg["data"][4]) * 0.1;
+        gateDrvrBrd = ((msg["data"][7] << 8) + msg["data"][6]) * 0.1;
 
-  //       break;
-  //     case 0xa5:
-  //       RPM = (msg["data"][3] << 8) + msg["data"][2];
+        break;
 
-  //       break;
-  //     case 0x181:
-  //       highCellTemp = ((msg["data"][2] << 8) + msg["data"][1]) * 0.1;
-  //       lowCellTemp = ((msg["data"][5] << 8) + msg["data"][4]) * 0.1;
-  //       break;
-  //     case 0x111:
-  //       DCL = (msg["data"][1] << 8) + msg["data"][0];
-  //       break;
-  //     case 0x183:
-  //       SOC = ((msg["data"][5] << 8) + msg["data"][4]) * 0.5;
-  //       b.set(SOC);
-  //       break;
-  //     case 0xaa:
-  //       OBVSM_state = (msg["data"][1] << 8) + msg["data"][0];
-  //       inverter_state = msg["data"][2];
-  //       relay_state = msg["data"][3];
-  //       inverter_run_state = msg["data"][4];
-  //       inverter_cmd_state = msg["data"][5];
-  //       inverter_enable_state = msg["data"][6];
-  //       direction_state = msg["data"][7];
-  //       break;
-  //     case 0xab:
-  //       post_lo_fault = (msg["data"][1] << 8) + msg["data"][0];
-  //       post_hi_fault = (msg["data"][3] << 8) + msg["data"][2];
-  //       run_lo_fault = (msg["data"][5] << 8) + msg["data"][4];
-  //       run_hi_fault = (msg["data"][7] << 8) + msg["data"][6];
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // });
+      case mtrTempAddr:
+        curr_motortemp = ((msg["data"][5] << 8) + msg["data"][4]) * 0.1;
 
-  // channel.start();
+        motorTemp.textContent = curr_motortemp.toString();
+        break;
+
+      case rpmAddr:
+        curr_rpm = (msg["data"][3] << 8) + msg["data"][2];
+
+        rpm.textContent = curr_rpm.toString();
+        if (curr_rpm < RPM_PACE) {
+          rpmBar.set((1.0/3.0) * (curr_rpm / RPM_PACE));
+        } else {
+          rpmBar.set((1.0/3.0) + ((2.0 / 3.0) * (curr_rpm - RPM_PACE) / (MAX_RPM - RPM_PACE)));
+        }
+        break;
+
+      case bmsTempsAddr:
+        curr_maxcelltemp = ((msg["data"][2] << 8) + msg["data"][1]) * 0.1;
+        curr_mincelltemp = ((msg["data"][5] << 8) + msg["data"][4]) * 0.1;
+
+        maxCellTemp.textContent = curr_maxcelltemp.toString().substring(0, 6);
+        minCellTemp.textContent = curr_mincelltemp.toString().substring(0, 6);
+        break;
+
+      case dclAddr:
+        dcl = (msg["data"][1] << 8) + msg["data"][0];
+        break;
+
+      case socAddr:
+        curr_soc = ((msg["data"][5] << 8) + msg["data"][4]) * 0.5;
+        
+        socBar.animate(curr_soc / 100.0);
+        break;
+
+      case mcInternalAddr:
+        OBVSM_state = (msg["data"][1] << 8) + msg["data"][0];
+        inverter_state = msg["data"][2];
+        relay_state = msg["data"][3];
+        inverter_run_state = msg["data"][4];
+        inverter_cmd_state = msg["data"][5];
+        inverter_enable_state = msg["data"][6];
+        direction_state = msg["data"][7];
+        break;
+
+      case mcErrorAddr:
+        post_lo_fault = (msg["data"][1] << 8) + msg["data"][0];
+        post_hi_fault = (msg["data"][3] << 8) + msg["data"][2];
+        run_lo_fault = (msg["data"][5] << 8) + msg["data"][4];
+        run_hi_fault = (msg["data"][7] << 8) + msg["data"][6];
+        break;
+
+      default:
+        break;
+    }
+  });
+
+  channel.start();
 }
