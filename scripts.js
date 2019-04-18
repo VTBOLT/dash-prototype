@@ -344,12 +344,10 @@ if (process.env.dev) {
 }
 
 if (process.env.can) {
-  //shell.exec('sudo modprobe vcan');
-  //shell.exec('echo "test"');
-  can_test();
-  execute('echo test', (output) => {
+  execute('sudo ./vcanStart.sh', (output) => {
     console.log(output);
   });
+  can_test();
 }
 
 function can_test() {
