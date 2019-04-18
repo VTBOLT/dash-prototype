@@ -1,4 +1,18 @@
 const { remote } = require('electron');
+const shell = require('shelljs');
+const exec = require('child_process').exec;
+function execute(command, callback) {
+  exec(command, (error, stdout, stderr) => {
+    callback(stdout);
+  });
+};
+
+document.addEventListener("keydown", function(e) {
+  if (e.which === 81) {
+    remote.getCurrentWindow().toggleDevTools();
+  }
+});
+
 // listener to toggle fullscreen with the escape key
 // this makes the toggling work....but with F11, not
 // the escape key...????
@@ -330,7 +344,12 @@ if (process.env.dev) {
 }
 
 if (process.env.can) {
+  //shell.exec('sudo modprobe vcan');
+  //shell.exec('echo "test"');
   can_test();
+  execute('echo test', (output) => {
+    console.log(output);
+  });
 }
 
 function can_test() {
