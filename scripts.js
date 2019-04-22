@@ -99,7 +99,7 @@ Menu.setApplicationMenu(menu);
 
 // Get JS objects of the HTML elements
 let rpm = document.getElementById("rpm");
-let maxMCTemp = document.getElementById("maxMCTemp");
+let MCTemp = document.getElementById("MCTemp");
 let motorTemp = document.getElementById("motorTemp");
 let maxMotorTemp = document.getElementById("maxMotorTemp");
 let maxCellTemp = document.getElementById("maxCellTemp");
@@ -126,7 +126,7 @@ let debugdcbus = document.getElementById("debugdcbus");
 // Set initial values for data
 let curr_soc = 92.0;
 let curr_rpm = 1000;
-let curr_maxmctemp = 98.0;
+let curr_mctemp = 98.0;
 let curr_motortemp = 30.0;
 let curr_maxmotortemp = 30.0;
 let curr_maxcelltemp = 120.0
@@ -274,7 +274,7 @@ function write_data() {
   // update other things less often
   if (counter > 50) {
     curr_soc -= 1.1;
-    curr_maxmctemp += 0.01;
+    curr_mctemp += 0.01;
     curr_motortemp += 1.0;
     curr_maxcelltemp += 0.01;
     curr_mincelltemp += 0.01;
@@ -286,7 +286,7 @@ function write_data() {
     }
     counter = 0;
     // Set dash elements
-    maxMCTemp.textContent = curr_maxmctemp.toString().substring(0, 5);
+    MCTemp.textContent = curr_mctemp.toString().substring(0, 5);
     motorTemp.textContent = curr_motortemp.toString();
     maxCellTemp.textContent = curr_maxcelltemp.toString().substring(0, 6);
     minCellTemp.textContent = curr_mincelltemp.toString().substring(0, 6);
@@ -391,27 +391,50 @@ function can_test() {
   let post_hi_fault;
   let run_lo_fault;
   let run_hi_fault;
+  let curr_maxmotortemp = 0;
 
   channel.addListener("onMessage", function(msg) {
     switch (msg["id"]) {
       case mcTempsAddr:
+        // relevant mc temps can messages
         moduleA = ((msg["data"][1] << 8) + msg["data"][0]) * 0.1;
         moduleB = ((msg["data"][3] << 8) + msg["data"][2]) * 0.1;
         moduleC = ((msg["data"][5] << 8) + msg["data"][4]) * 0.1;
         gateDrvrBrd = ((msg["data"][7] << 8) + msg["data"][6]) * 0.1;
-
+        
+        // calculate current mc temp from the messages
+        curr_mctemp = (moduleA + moduleB + moduleC) / 3.0; //average
+        
+        // set mc temp element on debug screen and dash
+        debugmctemp.textContent = curr_mctemp.toString().substring(0, 5);
+        MCTemp.textContent = curr_mctemp.toString().substring(0, 5);
         break;
 
       case mtrTempAddr:
+        // motor temp value can message
         curr_motortemp = ((msg["data"][5] << 8) + msg["data"][4]) * 0.1;
 
+        // set motor temp element on dash and debug screen
         motorTemp.textContent = curr_motortemp.toString();
+        debugmotortemp.textContent = curr_motortemp.toString();
+
+        // if necessary, set max motor temp element on dash and debug screen
+        if (curr_motortemp > curr_maxmotortemp) {
+          curr_maxmotortemp = curr_motortemp;
+          maxMotorTemp.textContent = curr_maxmotortemp.toString();
+          debughmtrtemp.textContent = curr_maxmotortemp.toString();
+        }
         break;
 
       case rpmAddr:
+        // rpm value can message
         curr_rpm = (msg["data"][3] << 8) + msg["data"][2];
 
+        // set rpm (text) element on dash and debug screen
         rpm.textContent = curr_rpm.toString();
+        debugrpm.textContent = curr_rpm.toString();
+
+        // update rpm bar on dash
         if (curr_rpm < RPM_PACE) {
           rpmBar.set((1.0/3.0) * (curr_rpm / RPM_PACE));
         } else {
@@ -420,20 +443,32 @@ function can_test() {
         break;
 
       case bmsTempsAddr:
+        // high and low cell temps can messages
+        // (note "high" and "low" are current values, not a running min/max)
         curr_maxcelltemp = ((msg["data"][2] << 8) + msg["data"][1]) * 0.1;
         curr_mincelltemp = ((msg["data"][5] << 8) + msg["data"][4]) * 0.1;
 
+        // update high/low cell temp elements on dash and debug screen
         maxCellTemp.textContent = curr_maxcelltemp.toString().substring(0, 6);
         minCellTemp.textContent = curr_mincelltemp.toString().substring(0, 6);
+        debughcelltemp.textContent = curr_maxcelltemp.toString().substring(0, 6);
+        debuglcelltemp.textContent = curr_mincelltemp.toString().substring(0, 6);
         break;
 
       case dclAddr:
+        // dcl can message
         dcl = (msg["data"][1] << 8) + msg["data"][0];
+
+        // update dcl element on debug screen
+        debugdcl.textContent = dcl.toString();
         break;
 
       case socAddr:
+        // soc can message
         curr_soc = ((msg["data"][5] << 8) + msg["data"][4]) * 0.5;
         
+        // update soc bar on dash and soc element on debug screen
+        debugsoc.textContent = curr_soc.toString().substring(0, 4);
         socBar.animate(curr_soc / 100.0);
         break;
 
