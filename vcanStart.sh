@@ -1,3 +1,3 @@
-sudo modprobe vcan
-sudo ip link add name vcan0 type vcan
-sudo ip link set up vcan0
+sudo modprobe can
+sudo ip link add name can0 type can
+sudo ip link set up can0
