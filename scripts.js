@@ -364,7 +364,7 @@ function can_test() {
 
   let can = require('socketcan');
   rpm.textContent = "yup";
-  let channel = can.createRawChannel("vcan0", true);
+  let channel = can.createRawChannel("can0", true);
   
   //var spawn = require("child_process").spawn;
   /* The command below spawns an instance of CanInterface
