@@ -355,7 +355,7 @@ function can_test() {
   // set can addresses
   let mtrTempAddr = 0x0a2;
   let rpmAddr = 0x0a5;
-  let dclAddr = 0x111;
+  let dclAddr = 0x6b1;
   let socAddr = 0x6b2;
   let mcTempsAddr = 0x0a0;
   let bmsTempsAddr = 0x6b4;
@@ -460,7 +460,7 @@ function can_test() {
         dcl = (msg["data"][1] << 8) + msg["data"][0];
 
         // update dcl element on debug screen
-        debugdcl.textContent = dcl.toString();
+        debugdcl.textContent = dcl.toString().substring(0,6);
         break;
 
       case socAddr:
