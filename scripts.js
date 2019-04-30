@@ -344,9 +344,9 @@ if (process.env.dev) {
 }
 
 if (process.env.can) {
-  execute('sudo ./vcanStart.sh', (output) => {
-    console.log(output);
-  });
+  //execute('sudo ./vcanStart.sh', (output) => {
+  //  console.log(output);
+  //});
   can_test();
 }
 
@@ -366,14 +366,6 @@ function can_test() {
   rpm.textContent = "yup";
   let channel = can.createRawChannel("can0", true);
   
-  //var spawn = require("child_process").spawn;
-  /* The command below spawns an instance of CanInterface
-  which outputs CAN data 
-  --------Used for production--------*/
-  // processSOC = spawn("./CanInterface", [], {
-  //   shell: true
-  // });
-
   // declare vars not already at the top of this script
   let moduleA;
   let moduleB;
