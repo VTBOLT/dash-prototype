@@ -356,9 +356,9 @@ function can_test() {
   let mtrTempAddr = 0x0a2;
   let rpmAddr = 0x0a5;
   let dclAddr = 0x111;
-  let socAddr = 0x183;
+  let socAddr = 0x6b2;
   let mcTempsAddr = 0x0a0;
-  let bmsTempsAddr = 0x181;
+  let bmsTempsAddr = 0x6b4;
   let mcInternalAddr = 0x0aa;
   let mcErrorAddr = 0x0ab;
 
@@ -465,7 +465,7 @@ function can_test() {
 
       case socAddr:
         // soc can message
-        curr_soc = ((msg["data"][5] << 8) + msg["data"][4]) * 0.5;
+        curr_soc = ((msg["data"][1] << 8) + msg["data"][0]) * 0.5;
         
         // update soc bar on dash and soc element on debug screen
         debugsoc.textContent = curr_soc.toString().substring(0, 4);
