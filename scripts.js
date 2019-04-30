@@ -354,7 +354,8 @@ if (process.env.can) {
 function can_test() {
   // 3 hexdigit address, 5 hexdigit value
   // set can addresses
-  let mtrTempAddr = 0x0a2;
+  let mtrTempFrontAddr = 0x0a8; // bytes 2 and 3 with .1 scale
+  //let mtrTempBackAddr = 0x0a9; // bytes 4 and 5 with .1 scale
   let rpmAddr = 0x097;
   let dclAddr = 0x6b1;
   let socAddr = 0x6b2;
@@ -412,9 +413,9 @@ function can_test() {
         MCTemp.textContent = curr_mctemp.toString().substring(0, 5);
         break;
 
-      case mtrTempAddr:
+      case mtrTempFrontAddr:
         // motor temp value can message
-        curr_motortemp = ((msg["data"][5] << 8) + msg["data"][4]) * 0.1;
+        curr_motortemp = ((msg["data"][3] << 8) + msg["data"][2]) * 0.1;
 
         // set motor temp element on dash and debug screen
         motorTemp.textContent = curr_motortemp.toString().substring(0,5);
