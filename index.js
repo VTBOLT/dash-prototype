@@ -8,6 +8,7 @@ function createWindow() {
     win = new BrowserWindow({ 
         width: 800, 
         height: 480, 
+        frame: false
      });
      
     // set full screen (matters for the pi)
