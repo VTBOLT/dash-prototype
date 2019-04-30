@@ -131,6 +131,7 @@ let curr_motortemp = 30.0;
 let curr_maxmotortemp = 30.0;
 let curr_maxcelltemp = 120.0
 let curr_mincelltemp = 102.0
+let curr_dcbusv = 0;
 let counter = 51; // analagous to "temp" on BOLT_3_Dash
 
 let RPM_PACE = 4700.0;
@@ -354,13 +355,15 @@ function can_test() {
   // 3 hexdigit address, 5 hexdigit value
   // set can addresses
   let mtrTempAddr = 0x0a2;
-  let rpmAddr = 0x0a5;
+  let rpmAddr = 0x097;
   let dclAddr = 0x6b1;
   let socAddr = 0x6b2;
   let mcTempsAddr = 0x0a0;
   let bmsTempsAddr = 0x6b4;
   let mcInternalAddr = 0x0aa;
   let mcErrorAddr = 0x0ab;
+  let dcBusVAddr = 0x0a7;
+
 
   let can = require('socketcan');
   rpm.textContent = "yup";
@@ -387,6 +390,13 @@ function can_test() {
 
   channel.addListener("onMessage", function(msg) {
     switch (msg["id"]) {
+
+      case dcBusVAddr:
+        // dc bus voltage calculation: bytes 0 and 1, 0.1 scale factor
+        curr_dcbusv = (msg["data"][1] << 8 + msg["data"][0]) * 0.1;
+        debugdcbus.textContent = curr_dcbusv.toString().substring(0,6);
+
+        break;
       case mcTempsAddr:
         // relevant mc temps can messages
         moduleA = ((msg["data"][1] << 8) + msg["data"][0]) * 0.1;
