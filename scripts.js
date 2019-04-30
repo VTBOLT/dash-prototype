@@ -445,8 +445,8 @@ function can_test() {
       case bmsTempsAddr:
         // high and low cell temps can messages
         // (note "high" and "low" are current values, not a running min/max)
-        curr_maxcelltemp = ((msg["data"][2] << 8) + msg["data"][1]) * 0.1;
-        curr_mincelltemp = ((msg["data"][5] << 8) + msg["data"][4]) * 0.1;
+        curr_maxcelltemp = ((msg["data"][1] << 8) + msg["data"][0]) * 0.1;
+        curr_mincelltemp = ((msg["data"][3] << 8) + msg["data"][2]) * 0.1;
 
         // update high/low cell temp elements on dash and debug screen
         maxCellTemp.textContent = curr_maxcelltemp.toString().substring(0, 6);
