@@ -415,14 +415,14 @@ function can_test() {
         curr_motortemp = ((msg["data"][5] << 8) + msg["data"][4]) * 0.1;
 
         // set motor temp element on dash and debug screen
-        motorTemp.textContent = curr_motortemp.toString();
-        debugmotortemp.textContent = curr_motortemp.toString();
+        motorTemp.textContent = curr_motortemp.toString().substring(0,5);
+        debugmotortemp.textContent = curr_motortemp.toString().substring(0,5);
 
         // if necessary, set max motor temp element on dash and debug screen
         if (curr_motortemp > curr_maxmotortemp) {
           curr_maxmotortemp = curr_motortemp;
-          maxMotorTemp.textContent = curr_maxmotortemp.toString();
-          debughmtrtemp.textContent = curr_maxmotortemp.toString();
+          maxMotorTemp.textContent = curr_maxmotortemp.toString().substring(0,5);
+          debughmtrtemp.textContent = curr_maxmotortemp.toString().substring(0,5);
         }
         break;
 
