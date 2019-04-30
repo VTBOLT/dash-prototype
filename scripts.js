@@ -290,7 +290,7 @@ function write_data() {
     motorTemp.textContent = curr_motortemp.toString();
     maxCellTemp.textContent = curr_maxcelltemp.toString().substring(0, 6);
     minCellTemp.textContent = curr_mincelltemp.toString().substring(0, 6);
-    socBar.animate(curr_soc / 100.0);
+    socBar.set(curr_soc / 100.0);
 
     // Set debug elements
     debugsoc.textContent = curr_soc.toString().substring(0, 4);
@@ -469,7 +469,7 @@ function can_test() {
         
         // update soc bar on dash and soc element on debug screen
         debugsoc.textContent = curr_soc.toString().substring(0, 4);
-        socBar.animate(curr_soc / 100.0);
+        socBar.set(curr_soc / 100.0);
         break;
 
       case mcInternalAddr:
