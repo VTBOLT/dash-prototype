@@ -397,7 +397,7 @@ function can_test() {
         // dc bus voltage calculation: bytes 0 and 1, 0.1 scale factor
         curr_dcbusv = (msg["data"][1] << 8 + msg["data"][0]) * 0.1;
         if (curr_dcbusv < 800 && curr_dcbusv > 200) {
-          debugdcbus.textContent = curr_dcbusv.toString().substring(0,6);
+          debugdcbus.textContent = curr_dcbusv.toString().substring(0,3);
 
         }
 
@@ -438,7 +438,7 @@ function can_test() {
         curr_rpm = (msg["data"][3] << 8) + msg["data"][2];
 
         // set rpm (text) element on dash and debug screen
-        if (curr_rpm < 12050 && curr_rpm > 8) {
+        if (curr_rpm < 12050 && curr_rpm > 50) {
           rpm.textContent = curr_rpm.toString();
           debugrpm.textContent = curr_rpm.toString();
 
@@ -451,6 +451,10 @@ function can_test() {
 
           //update debug mph value
           debugmph.textContent = Math.round(rpmToMph(curr_rpm)).toString();
+        } else {
+          rpmBar.set(0);
+          rpm.textContent = '0';
+          debugrpm.textContent = '0';
         }
         
         break;
