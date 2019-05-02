@@ -434,18 +434,21 @@ function can_test() {
         curr_rpm = (msg["data"][3] << 8) + msg["data"][2];
 
         // set rpm (text) element on dash and debug screen
-        rpm.textContent = curr_rpm.toString();
-        debugrpm.textContent = curr_rpm.toString();
+        if (curr_rpm < 12050) {
+          rpm.textContent = curr_rpm.toString();
+          debugrpm.textContent = curr_rpm.toString();
 
-        // update rpm bar on dash
-        if (curr_rpm < RPM_PACE) {
-          rpmBar.set((1.0/3.0) * (curr_rpm / RPM_PACE));
-        } else {
-          rpmBar.set((1.0/3.0) + ((2.0 / 3.0) * (curr_rpm - RPM_PACE) / (MAX_RPM - RPM_PACE)));
+          // update rpm bar on dash
+          if (curr_rpm < RPM_PACE) {
+            rpmBar.set((1.0/3.0) * (curr_rpm / RPM_PACE));
+          } else {
+            rpmBar.set((1.0/3.0) + ((2.0 / 3.0) * (curr_rpm - RPM_PACE) / (MAX_RPM - RPM_PACE)));
+          }
+
+          //update debug mph value
+          debugmph.textContent = Math.round(rpmToMph(curr_rpm)).toString();
         }
-
-        //update debug mph value
-        debugmph.textContent = Math.round(rpmToMph(curr_rpm)).toString();
+        
         break;
 
       case bmsTempsAddr:
