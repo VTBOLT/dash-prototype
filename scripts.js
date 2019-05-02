@@ -394,7 +394,7 @@ function can_test() {
 
       case dcBusVAddr:
         // dc bus voltage calculation: bytes 0 and 1, 0.1 scale factor
-        curr_dcbusv = (msg["data"][1] << 8 + msg["data"][0]) * 0.1;
+        curr_dcbusv = (msg["data"][0] << 8 + msg["data"][1]) * 0.1;
         debugdcbus.textContent = curr_dcbusv.toString().substring(0,6);
 
         break;
