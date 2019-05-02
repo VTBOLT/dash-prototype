@@ -438,7 +438,7 @@ function can_test() {
         curr_rpm = (msg["data"][3] << 8) + msg["data"][2];
 
         // set rpm (text) element on dash and debug screen
-        if (curr_rpm < 12050 && curr_rpm > 2) {
+        if (curr_rpm < 12050 && curr_rpm > 8) {
           rpm.textContent = curr_rpm.toString();
           debugrpm.textContent = curr_rpm.toString();
 
