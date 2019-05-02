@@ -367,7 +367,8 @@ function can_test() {
 
 
   let can = require('socketcan');
-  rpm.textContent = "yup";
+  rpm.textContent = '0';
+  rpmBar.set(0);
   let channel = can.createRawChannel("can0", true);
   
   // declare vars not already at the top of this script
@@ -434,7 +435,7 @@ function can_test() {
         curr_rpm = (msg["data"][3] << 8) + msg["data"][2];
 
         // set rpm (text) element on dash and debug screen
-        if (curr_rpm < 12050) {
+        if (curr_rpm < 12050 && curr_rpm > 2) {
           rpm.textContent = curr_rpm.toString();
           debugrpm.textContent = curr_rpm.toString();
 
