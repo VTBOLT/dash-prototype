@@ -409,8 +409,8 @@ function can_test() {
         curr_mctemp = (moduleA + moduleB + moduleC) / 3.0; //average
         
         // set mc temp element on debug screen and dash
-        debugmctemp.textContent = curr_mctemp.toString().substring(0, 5);
-        MCTemp.textContent = curr_mctemp.toString().substring(0, 5);
+        debugmctemp.textContent = curr_mctemp.toString().substring(0, 3);
+        MCTemp.textContent = curr_mctemp.toString().substring(0, 3);
         break;
 
       case mtrTempFrontAddr:
@@ -418,14 +418,14 @@ function can_test() {
         curr_motortemp = ((msg["data"][5] << 8) + msg["data"][4]) * 0.1;
 
         // set motor temp element on dash and debug screen
-        motorTemp.textContent = curr_motortemp.toString().substring(0,5);
-        debugmotortemp.textContent = curr_motortemp.toString().substring(0,5);
+        motorTemp.textContent = curr_motortemp.toString().substring(0,3);
+        debugmotortemp.textContent = curr_motortemp.toString().substring(0,3);
 
         // if necessary, set max motor temp element on dash and debug screen
         if (curr_motortemp > curr_maxmotortemp) {
           curr_maxmotortemp = curr_motortemp;
-          maxMotorTemp.textContent = curr_maxmotortemp.toString().substring(0,5);
-          debughmtrtemp.textContent = curr_maxmotortemp.toString().substring(0,5);
+          maxMotorTemp.textContent = curr_maxmotortemp.toString().substring(0,3);
+          debughmtrtemp.textContent = curr_maxmotortemp.toString().substring(0,3);
         }
         break;
 
