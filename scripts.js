@@ -345,7 +345,6 @@ if (process.env.dev) {
   write_data();
 }
 
-<<<<<<< HEAD
 //takes in "2 byte" parameters from CAN
 function updateFault(runLO, runHI, postLO, postHI) {
 
@@ -471,13 +470,11 @@ function analyzeFaultSet(set) {
     }
   }
   return max;
-=======
 if (process.env.can) {
   //execute('sudo ./vcanStart.sh', (output) => {
   //  console.log(output);
   //});
   can_test();
->>>>>>> origin/cantest
 }
 
 function can_test() {
@@ -641,4 +638,5 @@ function can_test() {
   });
 
   channel.start();
+}
 }
