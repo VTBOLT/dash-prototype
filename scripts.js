@@ -12,6 +12,91 @@ which outputs CAN data
 //   shell: true
 // });
 
+const { remote } = require('electron');
+// listener to toggle fullscreen with the escape key
+// this makes the toggling work....but with F11, not
+// the escape key...????
+// const { BrowserWindow } = remote;
+// document.addEventListener("keypress", event => {
+//   if (event.key == "Escape") {
+//     if (window.fullscreen) {
+//       window.fullscreen = false;
+//     } else {
+//       window.fullscreen = true;
+//     }
+//   }
+// });
+// have to build menu here for some reason to work
+// with fullscreen
+const { Menu, MenuItem, BrowserWindow } = remote;
+var modal = document.getElementById('myModal')
+var RPM = document.getElementById('rpm')
+let rpmGauge = document.getElementById("rpmGauge");
+//Get document elements
+var modal = document.getElementById('myModal');
+var close = document.getElementsByClassName("close")[0];
+var menu = Menu.buildFromTemplate([
+    {   label: 'Debug',
+        submenu: [{
+            label:'Open Debug Menu',
+            click(){modal.style.display = "block"}},
+
+                {   label:'Close Debug Menu',
+                    click(){modal.style.display = "none"}}]},
+    {   label: 'Analyze',
+        submenu: [{
+            label:'Graph RPM',
+            click(){dialog.showMessageBox(win,{message:'graph rpm'})}},
+                {   label:'Graph SOC',
+                    click(){dialog.showMessageBox(win,{message:'graph soc'})}},]},
+    {   label: 'Widgets',
+        submenu:[{
+            label:'RPM Gauge',
+            submenu:[{
+                        label:'show',
+                        click(){RPM.style.display = "block";
+                                rpmGauge.style.display = "block";},},
+                    {
+                        label:'hide',
+                        click(){RPM.style.display = "none";
+                                rpmGauge.style.display = "none";}}],},
+        {
+            label:'SOC Gauge',
+            submenu:[{
+                        label:'show',
+                        click(){document.getElementById("soc").style.display="block";
+                                document.getElementById("socBG").style.display="block"},},
+                    {
+                        label:'hide',
+                        click(){document.getElementById("soc").style.display="none";
+                                document.getElementById("socBG").style.display="none"}}],},
+        {  
+            label:'Fullscreen',
+            submenu:[{
+                        label:'go fullscreen',
+                        click(){window.fullscreen = true;},},
+                    {
+                        label:'go windowed',
+                        click(){window.fullscreen = false;}}],},
+        {            
+            label:'Temp Gauge',
+            submenu:[{
+                        label:'show',
+                        click(){document.getElementById("temps").style.display="block"},},
+                    {
+                        label:'hide',
+                        click(){document.getElementById("temps").style.display="none"}}],},
+        {
+            label:'Timer',
+            submenu:[{
+                        label:'show',
+                        click(){dialog.showMessageBox(win,{message:'show Time'})},},
+                    {
+                        label:'hide',
+                        click(){dialog.showMessageBox(win,{message:'hide '})}}],}],}  
+])
+Menu.setApplicationMenu(menu);
+
 // Get JS objects of the HTML elements
 let rpm = document.getElementById("rpm");
 let maxMCTemp = document.getElementById("maxMCTemp");
@@ -26,6 +111,17 @@ let rpmPath = document.getElementById("rpmPath");
 let showSOC = document.getElementById("showSOC");
 let socBG = document.getElementById("socBG");
 
+// Get JS objects of debug screen elements
+let debugrpm = document.getElementById("debugrpm");
+let debugsoc = document.getElementById("debugsoc");
+let debugmctemp = document.getElementById("debugmctemp");
+let debugmotortemp = document.getElementById("debugmotortemp");
+let debughcelltemp = document.getElementById("debughcelltemp");
+let debuglcelltemp = document.getElementById("debuglcelltemp");
+let debughmtrtemp = document.getElementById("debughmtrtemp");
+let debugdcl = document.getElementById("debugdcl");
+let debugmph = document.getElementById("debugmph");
+let debugdcbus = document.getElementById("debugdcbus");
 
 
 // Set initial values for data
@@ -38,8 +134,12 @@ let curr_maxcelltemp = 120.0
 let curr_mincelltemp = 102.0
 let counter = 51; // analagous to "temp" on BOLT_3_Dash
 
-let RPM_45MPH = 2358.0;
+let RPM_PACE = 4700.0;
 let MAX_RPM = 12000.0;
+let INCH_TO_MILE = 60.0 / 63360.0;
+let PI = 3.14159265358979;
+let GEAR_RATIO = 14.0 / 55.0 ;
+let WHEEL_DIAMETER = 25.66;
 
 // Initialize RPM ProgressBar
 let rpmBar = new ProgressBar.Path(rpmPath, {
@@ -64,7 +164,7 @@ let socBar = new ProgressBar.Line("#soc", {
       fontFamily: 'digital-7',
       fontSize: '38px',
       position: 'fixed',
-      top: '380px',
+      top: '374px',
       right: '280px',
     },
     autoStyleContainer: false
@@ -164,6 +264,12 @@ function fault_state(event) {
   changeFault(key);
 } 
 
+// Calculates mph given rpm
+function rpmToMph(rpm) {
+  let mph = INCH_TO_MILE * PI * WHEEL_DIAMETER * rpm * GEAR_RATIO;
+  return mph;
+}
+
 // Continuous loop writing new values to the screen
 function write_data() {    
   // update other things less often
@@ -177,13 +283,21 @@ function write_data() {
     if (curr_motortemp > curr_maxmotortemp) {
       curr_maxmotortemp = curr_motortemp;
       maxMotorTemp.textContent = curr_maxmotortemp.toString();
+      debughmtrtemp.textContent = curr_maxmotortemp.toString();
     }
     counter = 0;
+    // Set dash elements
     maxMCTemp.textContent = curr_maxmctemp.toString().substring(0, 5);
     motorTemp.textContent = curr_motortemp.toString();
     maxCellTemp.textContent = curr_maxcelltemp.toString().substring(0, 6);
     minCellTemp.textContent = curr_mincelltemp.toString().substring(0, 6);
     socBar.animate(curr_soc / 100.0);
+
+    // Set debug elements
+    debugsoc.textContent = curr_soc.toString().substring(0, 4);
+    debughcelltemp.textContent = curr_maxcelltemp.toString().substring(0, 6);
+    debuglcelltemp.textContent = curr_mincelltemp.toString().substring(0, 6);
+    debugmotortemp.textContent = curr_motortemp.toString();
   }
   
   // soc overflow
@@ -205,13 +319,18 @@ function write_data() {
   // update rpm every pass
   //rpmBar.set(curr_rpm / 12000.0);
   //curr_rpm = 1000; // FOR LOCATING TICK MARKS - REMOVE
-  if (curr_rpm < RPM_45MPH) {
-    // bar should be 1/3 full at 45 mph
-    rpmBar.set((1.0/3.0) * (curr_rpm / RPM_45MPH));
+  if (curr_rpm < RPM_PACE) {
+    // 4k now appears where 2k used to be
+    rpmBar.set((1.0/3.0) * (curr_rpm / RPM_PACE));
   } else {
-    rpmBar.set((1.0/3.0) + ((2.0 / 3.0) * (curr_rpm - RPM_45MPH) / (MAX_RPM - RPM_45MPH)));
+    rpmBar.set((1.0/3.0) + ((2.0 / 3.0) * (curr_rpm - RPM_PACE) / (MAX_RPM - RPM_PACE)));
   }
   rpm.textContent = curr_rpm.toString();
+  // debug rpm and mph
+  debugrpm.textContent = curr_rpm.toString();
+
+  debugmph.textContent = Math.round(rpmToMph(curr_rpm)).toString();
+
   curr_rpm += 100;
   counter++;
   
@@ -220,6 +339,7 @@ function write_data() {
 
 // Only use test data if "dev" Node env var is present
 // Examples: dev=1 npm start, dev=0 npm start, dev=lsjdkl npm start
+//process.env.dev = 1;
 if (process.env.dev) {
   write_data();
 }
