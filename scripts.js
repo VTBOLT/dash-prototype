@@ -224,6 +224,7 @@ if (process.env.dev) {
   write_data();
 }
 
+//takes in "2 byte" parameters from CAN
 function updateFault(runLO, runHI, postLO, postHI) {
 
   //enum for faults
@@ -315,15 +316,16 @@ function updateFault(runLO, runHI, postLO, postHI) {
     faultSet.add(post_hi_fault_dict[element]);
   });
   var highestError = analyzeFaultSet(faultSet);
-  changeFault(highestError);
+  changeFaultNum(highestError);
+  /*
   //test output
   var message = "";
   for (let item of faultSet) {
-    message += item[1] + '<br>';
+    message += item[1] + ' : ' + item[0]+ '<br>';
   }
   var text = document.getElementById('rpmScale');
-  text.innerHTML = testNum;
-
+  text.innerHTML = highestError;
+  */
 }
 
 function twoBytesToBits(bytes) {
