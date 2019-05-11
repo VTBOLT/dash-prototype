@@ -493,7 +493,7 @@ function can_test() {
 
 
   let can = require('socketcan');
-  rpm.textContent = '0';
+  rpm.textContent = 'yup';
   rpmBar.set(0);
   let channel = can.createRawChannel("can0", true);
   
