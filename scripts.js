@@ -439,7 +439,7 @@ function updateFault(runLO, runHI, postLO, postHI) {
   });
   var highestError = analyzeFaultSet(faultSet);
   changeFaultNum(highestError[1]);  
-  console.log(highestError[0]);
+  console.log("err: " + highestError[0] + "   " + highestError[1].toString());
   debugError.textContent = 'Error: ' + highestError[0];
   /*
   //test output
