@@ -473,11 +473,7 @@ function analyzeFaultSet(set) {
       message = item[0];
     }
   }
-<<<<<<< HEAD
   return [message, max];
-=======
-  return max;
->>>>>>> 90d0022cc8beeff0f926b221847c19728e7393b7
 }
 if (process.env.can) {
   //execute('sudo ./vcanStart.sh', (output) => {
