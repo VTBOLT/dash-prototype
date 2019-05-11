@@ -630,6 +630,8 @@ function can_test() {
         post_hi_fault = (msg["data"][3] << 8) + msg["data"][2];
         run_lo_fault = (msg["data"][5] << 8) + msg["data"][4];
         run_hi_fault = (msg["data"][7] << 8) + msg["data"][6];
+
+        updateFault(run_lo_fault, run_hi_fault, post_lo_fault, post_hi_fault);
         break;
 
       default:
