@@ -52,22 +52,27 @@ function nonrace_statesGPIO() {
 
 function pollDischarge(pin) {
     document.getElementById("startUpText").innerHTML = "BMS discharging";
+    rpio.poll(pin, null);
 }
 
 function pollPump(pin) {
     document.getElementById("startUpText").innerHTML = "Pumping";
+    rpio.poll(pin, null);
 }
 
 function pollACC(pin) {
     document.getElementById("startUpText").innerHTML = "Waiting on ignition...";
+    rpio.poll(pin, null);
 }
 
 function pollIGN(pin) {
     document.getElementById("startUpText").innerHTML = "Press the start button.";
+    rpio.poll(pin, null);
 }
 
 function pollISO(pin) {
     document.getElementById("startUpText").innerHTML = "ISOLATION FAULT!";
+    rpio.poll(pin, null);
 }
 
 //change boolean values
