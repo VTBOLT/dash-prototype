@@ -470,6 +470,7 @@ function analyzeFaultSet(set) {
     }
   }
   return max;
+}
 if (process.env.can) {
   //execute('sudo ./vcanStart.sh', (output) => {
   //  console.log(output);
@@ -641,4 +642,4 @@ function can_test() {
 
   channel.start();
 }
-}
+
