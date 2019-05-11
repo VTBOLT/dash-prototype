@@ -122,6 +122,7 @@ let debughmtrtemp = document.getElementById("debughmtrtemp");
 let debugdcl = document.getElementById("debugdcl");
 let debugmph = document.getElementById("debugmph");
 let debugdcbus = document.getElementById("debugdcbus");
+let debugError = document.getElementById("debugError");
 
 
 // Set initial values for data
@@ -437,7 +438,8 @@ function updateFault(runLO, runHI, postLO, postHI) {
     faultSet.add(post_hi_fault_dict[element]);
   });
   var highestError = analyzeFaultSet(faultSet);
-  changeFaultNum(highestError);
+  changeFaultNum(highestError[1]);
+  debugError.textContent = highestError[0];
   /*
   //test output
   var message = "";
@@ -464,12 +466,15 @@ function analyzeFaultSet(set) {
     return 3;
   }
   let max = 0;
+  let message = "";
   for (let item of set) {
     if (item[1] > max) {
-      max = item[1]
+      max = item[1];
+      message = item[0];
     }
   }
-  return max;
+  return [message, max];
+}
 if (process.env.can) {
   //execute('sudo ./vcanStart.sh', (output) => {
   //  console.log(output);
@@ -641,4 +646,4 @@ function can_test() {
 
   channel.start();
 }
-}
+
