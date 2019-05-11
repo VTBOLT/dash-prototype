@@ -473,7 +473,11 @@ function analyzeFaultSet(set) {
       message = item[0];
     }
   }
+<<<<<<< HEAD
   return [message, max];
+=======
+  return max;
+>>>>>>> 90d0022cc8beeff0f926b221847c19728e7393b7
 }
 if (process.env.can) {
   //execute('sudo ./vcanStart.sh', (output) => {
@@ -498,7 +502,7 @@ function can_test() {
 
 
   let can = require('socketcan');
-  rpm.textContent = '0';
+  rpm.textContent = 'yup';
   rpmBar.set(0);
   let channel = can.createRawChannel("can0", true);
   
