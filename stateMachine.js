@@ -70,6 +70,29 @@ function pollISO(pin) {
     document.getElementById("startUpText").innerHTML = "ISOLATION FAULT!";
 }
 
+//change boolean values
+/*
+function pollDischarge(pin) {
+    document.getElementById("startUpText").innerHTML = "BMS discharging";
+}
+
+function pollPump(pin) {
+    document.getElementById("startUpText").innerHTML = "Pumping";
+}
+
+function pollACC(pin) {
+    document.getElementById("startUpText").innerHTML = "Waiting on ignition...";
+}
+
+function pollIGN(pin) {
+    document.getElementById("startUpText").innerHTML = "Press the start button.";
+}
+
+function pollISO(pin) {
+    document.getElementById("startUpText").innerHTML = "ISOLATION FAULT!";
+}
+*/
+
 //only poll 29 and 37 in code
 /*
 //BMS must be discharging before any other buttons work
