@@ -35,19 +35,19 @@ function nonrace_statesGPIO() {
     //BMS Discharge Enable 
     rpio.open(29, rpio.INPUT, rpio.PULL_UP);
     //Pump Indicator
-    rpio.open(31, rpio.INPUT, rpio.PULL_UP);
+    rpio.open(31, rpio.INPUT, rpio.PULL_DOWN);
     //ACC Switch
     rpio.open(33, rpio.INPUT, rpio.PULL_UP);
     //IGN Switch
-    rpio.open(35, rpio.INPUT, rpio.PULL_UP);
+    rpio.open(35, rpio.INPUT, rpio.PULL_DOWN);
     //Isolation Fault Signal
     rpio.open(37, rpio.INPUT, rpio.PULL_UP);
     //poll for pin state change
-    rpio.poll(29, pollDischarge, rpio.POLL_DOWN);
-    rpio.poll(31, pollPump, rpio.POLL_DOWN);
-    rpio.poll(33, pollACC, rpio.POLL_DOWN);
-    rpio.poll(35, pollIGN, rpio.POLL_DOWN);
-    rpio.poll(37, pollISO, rpio.POLL_DOWN);  
+    rpio.poll(29, pollDischarge, rpio.POLL_LOW);
+    rpio.poll(31, pollPump, rpio.POLL_LOW);
+    rpio.poll(33, pollACC, rpio.POLL_LOW);
+    rpio.poll(35, pollIGN, rpio.POLL_LOW);
+    rpio.poll(37, pollISO, rpio.POLL_HIGH);  
 }
 
 function pollDischarge(pin) {
