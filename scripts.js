@@ -438,8 +438,8 @@ function updateFault(runLO, runHI, postLO, postHI) {
     faultSet.add(post_hi_fault_dict[element]);
   });
   var highestError = analyzeFaultSet(faultSet);
-  changeFaultNum(highestError[1]);
-  console.log("Printing now..." + highestError[0]);
+  changeFaultNum(highestError[1]);  
+  console.log(highestError[1]);
   debugError.textContent = 'Error: ' + highestError[0];
   /*
   //test output
@@ -464,7 +464,7 @@ function twoBytesToBits(bytes) {
 
 function analyzeFaultSet(set) {
   if(set.size == 0) {
-    return 3;
+    return ["no error", 3];
   }
   let max = 0;
   let message = "";
