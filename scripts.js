@@ -439,7 +439,7 @@ function updateFault(runLO, runHI, postLO, postHI) {
   });
   var highestError = analyzeFaultSet(faultSet);
   changeFaultNum(highestError[1]);  
-  console.log(highestError[1]);
+  console.log(highestError[0]);
   debugError.textContent = 'Error: ' + highestError[0];
   /*
   //test output
@@ -464,7 +464,7 @@ function twoBytesToBits(bytes) {
 
 function analyzeFaultSet(set) {
   if(set.size == 0) {
-    return ["no error", 3];
+    return ["no error", 0];
   }
   let max = 0;
   let message = "";
