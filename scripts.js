@@ -351,9 +351,9 @@ function updateFault(runLO, runHI, postLO, postHI) {
 
   //enum for faults
   const FaultLevel = {
-    LOW: 0,
-    MID: 1,
-    HIGH: 2
+    LOW: 1,
+    MID: 2,
+    HIGH: 3
   };
   //run faults (low byte) dict
   var run_lo_fault_dict = {
