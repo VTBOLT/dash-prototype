@@ -8,6 +8,10 @@ hokie stone: 117, 120, 123  #75787b
     user-select: none; /* Text doesn't highlight when double clicked/tapped */
 }
 
+#error {
+    font-family: 'tahoma';
+}
+
 @font-face {
     font-family: 'digital-7';
     src: url('digital-7.ttf');

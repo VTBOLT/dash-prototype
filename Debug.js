@@ -13,9 +13,9 @@ btn.onclick = function() {
 }
 
 // When the user clicks on Close Button, close the modal
-close.onclick = function() {
-    modal.style.display = "none";
-}
+//close.onclick = function() {
+//    modal.style.display = "none";
+//}
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
