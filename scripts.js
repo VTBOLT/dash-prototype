@@ -28,65 +28,71 @@ document.addEventListener("keydown", function(e) {
 // });
 // have to build menu here for some reason to work
 // with fullscreen
-const { Menu, MenuItem, BrowserWindow } = remote;
+const { Menu } = remote
 var modal = document.getElementById('myModal')
 var RPM = document.getElementById('rpm')
-let rpmGauge = document.getElementById("rpmGauge");
-//Get document elements
-var modal = document.getElementById('myModal');
-var close = document.getElementsByClassName("close")[0];
+let rpmGauge = document.getElementById('rpmGauge')
+// Get document elements
 var menu = Menu.buildFromTemplate([
-    {   label: 'Debug',
-        submenu: [{
-            label:'Open Debug Menu',
-            click(){modal.style.display = "block"}},
+  { label: 'Debug',
+    submenu: [{
+      label: 'Open Debug Menu',
+      click () { modal.style.display = 'block' }},
 
-                {   label:'Close Debug Menu',
-                    click(){modal.style.display = "none"}}]},
-    {   label: 'Analyze',
+      { label: 'Close Debug Menu',
+        click () { modal.style.display = 'none' }}]},
+  { label: 'Analyze',
+    submenu: [{
+      label: 'Graph RPM',
+      click () { dialog.showMessageBox(win, {message: 'graph rpm'}) }},
+      {label: 'Graph SOC',
+        click () { dialog.showMessageBox(win, {message: 'graph soc'}) }}]},
+  { label: 'Widgets',
+    submenu: [{
+      label: 'RPM Gauge',
+      submenu: [{
+        label: 'show',
+        click () {
+          RPM.style.display = 'block'
+          rpmGauge.style.display = 'block'
+        }},
+        {
+          label: 'hide',
+          click () {
+            RPM.style.display = 'none'
+            rpmGauge.style.display = 'none'
+          }}]},
+      {
+        label: 'SOC Gauge',
         submenu: [{
-            label:'Graph RPM',
-            click(){dialog.showMessageBox(win,{message:'graph rpm'})}},
-                {   label:'Graph SOC',
-                    click(){dialog.showMessageBox(win,{message:'graph soc'})}},]},
-    {   label: 'Widgets',
-        submenu:[{
-            label:'RPM Gauge',
-            submenu:[{
-                        label:'show',
-                        click(){RPM.style.display = "block";
-                                rpmGauge.style.display = "block";},},
-                    {
-                        label:'hide',
-                        click(){RPM.style.display = "none";
-                                rpmGauge.style.display = "none";}}],},
-        {
-            label:'SOC Gauge',
-            submenu:[{
-                        label:'show',
-                        click(){document.getElementById("soc").style.display="block";
-                                document.getElementById("socBG").style.display="block"},},
-                    {
-                        label:'hide',
-                        click(){document.getElementById("soc").style.display="none";
-                                document.getElementById("socBG").style.display="none"}}],},
-        {  
-            label:'Fullscreen',
-            submenu:[{
-                        label:'go fullscreen',
-                        click(){window.fullscreen = true;},},
-                    {
-                        label:'go windowed',
-                        click(){window.fullscreen = false;}}],},
-        {            
-            label:'Temp Gauge',
-            submenu:[{
-                        label:'show',
-                        click(){document.getElementById("temps").style.display="block"},},
-                    {
-                        label:'hide',
-                        click(){document.getElementById("temps").style.display="none"}}],},
-        {
+          label: 'show',
+          click () {
+            document.getElementById('soc').style.display = 'block'
+            document.getElementById('socBG').style.display = 'block'
+          }},
+          {
+            label: 'hide',
+            click () {
+              document.getElementById('soc').style.display = 'none'
+              document.getElementById('socBG').style.display = 'none'
+            }}]},
+      {
+        label: 'Fullscreen',
+        submenu: [{
+          label: 'go fullscreen',
+          click () { window.fullscreen = true }},
+          {
+            label: 'go windowed',
+            click () { window.fullscreen = false }}]},
+      {
+        label: 'Temp Gauge',
+        submenu: [{
+          label: 'show',
+          click () { document.getElementById('temps').style.display = 'block' }},
+          {
+            label: 'hide',
+            click () { document.getElementById('temps').style.display = 'none' }}]},
+      {
             label:'Timer',
             submenu:[{
                         label:'show',
