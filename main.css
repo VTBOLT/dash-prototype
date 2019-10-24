@@ -14,12 +14,12 @@ hokie stone: 117, 120, 123  #75787b
 
 @font-face {
     font-family: 'digital-7';
-    src: url('./fonts/digital-7.ttf');
+    src: url('./resources/digital-7.ttf');
 }
 
 @font-face {
     font-family: 'tahoma';
-    src: url('./fonts/Tahoma.ttf');
+    src: url('./resources/Tahoma.ttf');
 }
 
 body {

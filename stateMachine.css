@@ -15,7 +15,7 @@ body, html {
 }
 
 .image {
-    background-image: url('bolt_logo.png');
+    background-image: url('./resources/bolt_logo.png');
     height: 100%;
     width: 100%;   
     background-size: 100% 100%;
