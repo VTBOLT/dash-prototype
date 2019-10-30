@@ -22,9 +22,9 @@ do
     # send rpm value
     if [ $rpm -ge 10000 ];
     then
-        cansend can0 0a5#000$rpm
+        cansend vcan0 0a5#000$rpm
     else
-        cansend can0 0a5#0000$rpm
+        cansend vcan0 0a5#0000$rpm
     fi
 
     # increment rpm
