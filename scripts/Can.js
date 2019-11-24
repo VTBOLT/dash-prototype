@@ -20,7 +20,7 @@ function can_test() {
     let can = require('socketcan');
     rpm.textContent = 'yup';
     rpmBar.set(0);
-    let channel = can.createRawChannel("vcan0", true);
+    let channel = can.createRawChannel("can0", true);
   
     // declare vars not already at the top of this script
     let moduleA;
