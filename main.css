@@ -93,6 +93,10 @@ tr:nth-child(odd) {
     height: 400px;
 }
 
+#rpmGauge {
+    margin-top: 15px;
+}
+
 #soc svg {
     /* filter: drop-shadow(-10px 10px 3px rgb(104, 104, 104)); */
     transform-origin: 150px 100px;
