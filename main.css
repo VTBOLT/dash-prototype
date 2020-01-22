@@ -222,7 +222,7 @@ tr:nth-child(odd) {
     bottom: 0;
     left: 160px;
     position: absolute;
-    margin-bottom: -129px;
+    margin-bottom: -128px;
     font-family: 'tahoma';
     overflow: hidden;
     transition: margin-bottom 0.3s ease-in-out;
