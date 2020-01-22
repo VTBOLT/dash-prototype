@@ -6,13 +6,21 @@ let maxMotorTemp = document.getElementById("maxMotorTemp");
 let maxCellTemp = document.getElementById("maxCellTemp");
 let minCellTemp = document.getElementById("minCellTemp");
 let soc = document.getElementById("soc");
+let temps = document.getElementById('temps');
 let tempTable = document.getElementById("tempTable");
 let showTemps = document.getElementById("showTemps");
 let rpmPath = document.getElementById("rpmPath");
+let rpmScale = document.getElementById('rpmScale');
 let showSOC = document.getElementById("showSOC");
 let socBG = document.getElementById("socBG");
 let modal = document.getElementById('myModal');
 let rpmGauge = document.getElementById('rpmGauge');
+let debugMenu = document.getElementById('debugMenu');
+let debugToggle = document.getElementById('debugToggle');
+let gaugesMenu = document.getElementById('gaugesMenu');
+let rpmToggle = document.getElementById('rpmToggle');
+let socToggle = document.getElementById('socToggle');
+let tempsToggle = document.getElementById('tempsToggle');
 
 // Get JS objects of debug screen elements
 let debugrpm = document.getElementById("debugrpm");
@@ -25,6 +33,7 @@ let debughmtrtemp = document.getElementById("debughmtrtemp");
 let debugdcl = document.getElementById("debugdcl");
 let debugmph = document.getElementById("debugmph");
 let debugdcbus = document.getElementById("debugdcbus");
+let debugdcbusa = document.getElementById("debugdcbusa");
 let debugError = document.getElementById("debugError");
 
 
@@ -37,6 +46,7 @@ let curr_maxmotortemp = 30.0;
 let curr_maxcelltemp = 120.0
 let curr_mincelltemp = 102.0
 let curr_dcbusv = 0;
+let curr_dcbusa = 0;
 let counter = 51; // analagous to "temp" on BOLT_3_Dash
 
 let RPM_PACE = 4700.0;

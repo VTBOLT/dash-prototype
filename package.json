@@ -11,14 +11,16 @@
   "author": "Khang L.",
   "license": "ISC",
   "devDependencies": {
-    "electron": "3.0.16",
-    "electron-rebuild": "^1.8.4"
+    "electron": "^3.0.16",
+    "electron-rebuild": "^1.8.8"
   },
   "dependencies": {
     "argparse": "^1.0.10",
     "argv": "0.0.2",
+    "jquery": "^3.4.1",
     "nan": "^2.13.2",
     "node-gyp": "^3.8.0",
+    "npm": "^6.12.1",
     "progressbar.js": "^1.0.1",
     "shelljs": "^0.8.3",
     "socketcan": "^2.4.0",

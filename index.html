@@ -9,6 +9,7 @@
 
 <body id="body" onkeydown="fault_state(event)"> 
     <div id="container">
+
         <!-- Float Left -->
         <div id="notTemps">
             <div id="rpmGauge">
@@ -49,7 +50,7 @@
                 0
             </p>
             <!-- Just for fun....remove? -->
-            <img id="logo" src="./resources/bolt_logo.png" /> 
+            <!-- <img id="logo" src="./resources/bolt_logo.png" />  -->
             <!-- Format Space -->
             <h1 id="error" style="display:none">
                 Error
@@ -107,6 +108,7 @@
         <div><h1 class="main_param">DCL:<h1 class="pad">AAAAAA</h1></h1><p class="data" id="debugdcl">0</p></div>
         <div><h1 class="main_param">MPH:<h1 class="pad">AAAAAA</h1></h1><p class="data" id="debugmph">0</p></div>
         <div><h1 class="main_param">DC BUS VOLTAGE:</h1><p class="data" id="debugdcbus">0</p></div>
+        <div><h1 class="main_param">DC BUS AMPERAGE:</h1><p class="data" id="debugdcbusa">0</p></div>
       </div>
       <!-- Row 3 -->
       <div class="flex-container" style="height: 22%">
@@ -114,19 +116,42 @@
       </div>
     </div>
 
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <div id="debugMenu">
+      <table>
+        <tr>
+          <th id="debugHeader">Debug</th>
+        </tr>
+        <tr>
+          <td id="debugToggle">Toggle debug menu</td>
+        </tr>
+      </table>
+    </div>
 
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js'></script>
+    <div id="gaugesMenu">
+      <table>
+        <tr>
+          <th id="gaugesHeader">Gauges</th>
+        </tr>
+        <tr>
+          <td id="rpmToggle">Toggle RPM gauge</td>
+        </tr>
+        <tr>
+          <td id="socToggle">Toggle SOC gauge</td>
+        </tr>
+        <tr>
+          <td id="tempsToggle">Toggle temps gauge</td>
+        </tr>
+      </table>
+    </div>
+
     <script src="node_modules/progressbar.js/dist/progressbar.min.js"></script>
 
     <script src="./scripts/Constants.js"></script>
     <script src="./scripts/scripts.js"></script>
-    <script src="./scripts/Debug.js"></script>
     <script src="./scripts/Fault.js"></script>
     <script src="./scripts/Menu.js"></script>
     <script src="./scripts/TestData.js"></script>
     <script src="./scripts/DevMenu.js"></script>
-    <script src="./scripts/ShowHide.js"></script>
     <script src="./scripts/Can.js"></script>
 </body>
 

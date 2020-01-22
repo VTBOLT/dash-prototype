@@ -7,6 +7,7 @@ function write_data() {
       curr_motortemp += 1.0;
       curr_maxcelltemp += 0.01;
       curr_mincelltemp += 0.01;
+      curr_dcbusa += 1;
       //test for new max motor temp
       if (curr_motortemp > curr_maxmotortemp) {
         curr_maxmotortemp = curr_motortemp;
@@ -26,6 +27,7 @@ function write_data() {
       debughcelltemp.textContent = curr_maxcelltemp.toString().substring(0, 6);
       debuglcelltemp.textContent = curr_mincelltemp.toString().substring(0, 6);
       debugmotortemp.textContent = curr_motortemp.toString();
+      debugdcbusa.textContent = curr_dcbusa.toString();
     }
     
     // soc overflow
@@ -59,6 +61,11 @@ function write_data() {
     curr_rpm += 100;
     counter++;
     
+    // debug dc bus amperage
+    if (curr_dcbusa > 100) {
+      curr_dcbusa = 0;
+    }
+
     setTimeout(write_data, 100);
 }
   
