@@ -25,7 +25,7 @@ let socBar = new ProgressBar.Line("#soc", {
       fontFamily: 'digital-7',
       fontSize: '38px',
       position: 'fixed',
-      top: '410px',
+      top: '420px',
       right: '280px',
     },
     autoStyleContainer: false
