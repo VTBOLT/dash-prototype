@@ -6,13 +6,21 @@ let maxMotorTemp = document.getElementById("maxMotorTemp");
 let maxCellTemp = document.getElementById("maxCellTemp");
 let minCellTemp = document.getElementById("minCellTemp");
 let soc = document.getElementById("soc");
+let temps = document.getElementById('temps');
 let tempTable = document.getElementById("tempTable");
 let showTemps = document.getElementById("showTemps");
 let rpmPath = document.getElementById("rpmPath");
+let rpmScale = document.getElementById('rpmScale');
 let showSOC = document.getElementById("showSOC");
 let socBG = document.getElementById("socBG");
 let modal = document.getElementById('myModal');
 let rpmGauge = document.getElementById('rpmGauge');
+let debugMenu = document.getElementById('debugMenu');
+let debugToggle = document.getElementById('debugToggle');
+let gaugesMenu = document.getElementById('gaugesMenu');
+let rpmToggle = document.getElementById('rpmToggle');
+let socToggle = document.getElementById('socToggle');
+let tempsToggle = document.getElementById('tempsToggle');
 
 // Get JS objects of debug screen elements
 let debugrpm = document.getElementById("debugrpm");

@@ -195,3 +195,37 @@ tr:nth-child(odd) {
     top: 120px;
     left: 67px;
 }
+
+#debugMenu {
+    bottom: 0;
+    left: 5px;
+    font-family: 'tahoma';
+    position: absolute;
+    margin-bottom: -45px;
+    overflow: hidden;
+    transition: margin-bottom 0.3s ease-in-out;
+    z-index: 999;
+}
+
+#debugHeader, #gaugesHeader {
+    border-radius: 7px 7px 0px 0px;
+    text-align: center;
+    box-shadow: 2px 2px 1px #75787b;
+    line-height: 200%;
+}
+
+#debugMenu.expanded, #gaugesMenu.expanded {
+    margin-bottom: 0px;
+}
+
+#gaugesMenu {
+    bottom: 0;
+    left: 160px;
+    position: absolute;
+    margin-bottom: -131px;
+    font-family: 'tahoma';
+    overflow: hidden;
+    transition: margin-bottom 0.3s ease-in-out;
+    z-index: 999;
+}
+
