@@ -49,9 +49,9 @@ let curr_dcbusv = 0;
 let curr_dcbusa = 0;
 let counter = 51; // analagous to "temp" on BOLT_3_Dash
 
-let RPM_PACE = 4700.0;
-let MAX_RPM = 12000.0;
+let MAX_RPM = 8000.0;
+let RPM_PACE = 2500.0;
 let INCH_TO_MILE = 60.0 / 63360.0;
 let PI = 3.14159265358979;
-let GEAR_RATIO = 14.0 / 55.0 ;
+let GEAR_RATIO = 17.0 / 49.0 ;
 let WHEEL_DIAMETER = 25.66;

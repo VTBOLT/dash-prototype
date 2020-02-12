@@ -166,34 +166,19 @@ tr:nth-child(odd) {
     left: 724px;
 }
 
-#rpm10 {
-    top: -15px;
-    left: 575px;
-}
-
-#rpm8 {
-    top: -15px;
-    left: 440px;
-}
-
 #rpm6 {
+    top: -15px;
+    left: 511px;
+}
+
+#rpm4 {
     top: -15px;
     left: 296px;
 }
 
-#rpm4 {
-    top: 10px;
-    left: 140px;
-}
-
 #rpm2 {
-    top: 125px;
-    left: 56px;
-}
-
-#rpm1 {
-    top: 120px;
-    left: 67px;
+    top: 25px;
+    left: 120px;
 }
 
 #debugMenu {
