@@ -36,7 +36,7 @@ function write_data() {
     }
   
     // rpm overflow
-    if (curr_rpm > 12000) {
+    if (curr_rpm > MAX_RPM) {
       curr_rpm = 200;
   
     }
